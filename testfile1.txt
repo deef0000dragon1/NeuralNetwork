@@ -1,0 +1,53 @@
+[
+{const10|110|()}
+{const2|102|()}
+{const3|103|()}
+{const4|104|()}
+{const5|105|()}
+{const8|108|()}
+{power|10|(110,103)}
+{power|11|(110,102)}
+{multiply|4|(10,103)}
+{multiply|5|(11,104)}
+{multiply|7|(11,105)}
+{multiply|8|(110,104)}
+{sum|3|(4,5,102)}
+{sum|2|(4,7,8,108)}
+{multiply|1|(2,3)}
+{passthrough|0|(1)}
+]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+testing if it is possible to add comments to the end of a file
+
+[
+{const10|110|()}        10
+{const2|102|()}         2
+{const3|103|()}         3   
+{const4|104|()}         4
+{const5|105|()}         5
+{const8|108|()}         8
+{power|10|(110,103)}    1000
+{power|11|(110,102)}    100
+{multiply|4|(10,103)}   3000
+{multiply|5|(11,104)}   400
+{multiply|7|(11,105)}   500
+{multiply|8|(110,104)}  40
+{sum|3|(4,5,102)}       3402
+{sum|2|(4,7,8,108)}     3548
+{multiply|1|(2,3)}      3402*3548
+{passthrough|0|(1)}     ^
+]

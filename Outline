@@ -1,0 +1,30 @@
+Game Design******************************
+
+	cards*****
+	Each Card is an individually coded object
+	Components
+	{
+		//each should have a base and mutable
+		Cost
+		Stock effect
+		Money Effect
+		Timing Effect
+		Type //inumertion
+		
+		applicable (bool of if it sould be triggered)
+		
+		
+		
+		Neighbor Effect
+		Extra Cards
+		
+		
+	}
+	
+	
+	Board*****
+	the game board is a square grid board. 
+	
+
+
+Neural Net Design************************

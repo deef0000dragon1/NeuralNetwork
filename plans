@@ -1,0 +1,32 @@
+how to compare the different genomes
+
+look for operatons that have the same random code, look at their inputs, compare.
+
+look for common linkages. 
+
+look for operations that have the same inputs but different operations. 
+
+
+
+
+
+//to be added in the system creating the genomes
+//system that looks at teh genome and randomly adds or changes parts of the genome. 
+//each of the additions has to be checked. 
+//check that all nodes have atleast one node that is attached to it's input. 
+
+
+Write the 
+
+LinkedList<E> subList(int first, int last) 
+
+method for a linked list that returns a sublist of items 
+(you can use a single linked list form for simplicity).
+Assume a method 
+Node<E> goTo(int position) 
+that returns the node at that position; 
+also assume method 
+void checkIndex(int index) 
+that throws an exception for out of bounds index values.
+
+
