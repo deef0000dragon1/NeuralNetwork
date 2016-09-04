@@ -1,16 +1,19 @@
 package tech.deef.neuralnetwork.network.test;
 
+import static org.junit.Assert.*;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import tech.deef.neuralnetwork.network.nodes.*;
-import tech.deef.neuralnetwork.network.calculate.*;
-import tech.deef.neuralnetwork.network.generation.NetworkGenerator;
+import org.junit.Test;
+
+import tech.deef.neuralnetwork.network.calculate.NeuralNetworkCalculation;
+import tech.deef.neuralnetwork.network.nodes.NetworkCalculationNode;
 
 //designed to test and create tsting methods for the neural network
-public class Test {
+public class TestNeuralNetwork {
 
 	public static void main(String args[]) {
 		basicNetworkTest1();
@@ -57,6 +60,7 @@ public class Test {
 
 	// designed to test the basic functions of the neural network with hard coded nodes as input
 	//along with a hand writtern network.
+	@Test
 	public static void basicNetworkTest2() {
 		int expectedOutputNodeID = 0;
 
@@ -88,6 +92,7 @@ public class Test {
 
 			double result = testNetwork1.getResultantValue();
 			int cycles = testNetwork1.getItterations();
+			assertNotNull(result);
 			System.out.printf("%.2f in %d cycles", result, cycles); //result number of cycles is not functioning
 				// print final values.
 		} catch (FileNotFoundException e) {
