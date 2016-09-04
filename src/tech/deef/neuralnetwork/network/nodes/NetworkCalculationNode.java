@@ -29,7 +29,8 @@ public class NetworkCalculationNode {
 	// sets the node inputs. Used for the final equation. may need to update
 	// calculationFunction as well.
 	public void setNodes(ArrayList<NetworkCalculationNode> nodes) {
-		System.out.println("setting nodes for node " + nodeID);
+		//this print informs what node is having it's nodes set. 
+		//System.out.println("setting nodes for node " + nodeID);
 		inputNodes = nodes;
 		inputNodePreviousValues = new ArrayList<Double>(inputNodes.size());
 

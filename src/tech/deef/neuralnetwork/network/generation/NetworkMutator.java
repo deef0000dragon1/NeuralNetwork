@@ -6,7 +6,7 @@ import java.util.Random;
 import tech.deef.neuralnetwork.network.calculate.NeuralNetworkCalculation;
 import tech.deef.neuralnetwork.network.nodes.NetworkCalculationNode;
 
-/**generates a new network from a given neural network
+/* generates a new network from a given neural network
  * the only inputs are the network (in string or in physical form) anda  mutator value
  * the higher the mutator value, the higher the number of mutations that will occur. 
  * 
@@ -76,7 +76,7 @@ public class NetworkMutator {
 		}
 		
 		nodes = addNewNodes(rand, nodes, numToAdd);
-		nodes = alterPaths(rand, nodes, (int)(numToAdd*1.375));		
+		nodes = alterNodeLinkages(rand, nodes, (int)(numToAdd*1.375));		
 		//TODO: check all connections are valid and have necessary number of inputs
 		//TODO: mutate connections
 		
@@ -85,13 +85,9 @@ public class NetworkMutator {
 	
 	//************************Mutation Methods**********************************
 	
-	private ArrayList<NetworkCalculationNode> alterPaths(Random rand, ArrayList<NetworkCalculationNode> nodes, int numToChange) {
+	private ArrayList<NetworkCalculationNode> alterNodeLinkages(Random rand, ArrayList<NetworkCalculationNode> nodes, int numToChange) {
 
-		/* 
-		 * 
-		 * 
-		 * 
-		 * */
+		
 		return null;
 	}
 	

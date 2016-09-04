@@ -255,17 +255,20 @@ public class NetworkGenerator {
 	private static ArrayList<Integer> ParseNodeSources(String nodeIDs) {
 
 		if (!nodeIDs.equals("()")) {
-			System.out.print("NIDs " + nodeIDs + ": ");
+			//prints the nodes to be attempted to be added to the array list of integers.
+			//System.out.print("NIDs " + nodeIDs + ": ");
 			ArrayList<Integer> parsedNodes = new ArrayList<Integer>();
 			ArrayList<String> unparsedNodes = new ArrayList<String>(
 					Arrays.asList(nodeIDs.substring(1, nodeIDs.length() - 1).split(",")));
 
 			for (int i = 0; i < unparsedNodes.size(); i++) {
-				System.out.print(unparsedNodes.get(i) + ": ");
+				//this print output the node connection id as it was added to parsed nodes. 
+				//System.out.print(unparsedNodes.get(i) + ": ");
 				parsedNodes.add(Integer.parseInt(unparsedNodes.get(i)));
 			}
 
-			System.out.println("\n");
+			//newline for seperation
+			//System.out.println("\n");
 
 			return parsedNodes;
 		}

@@ -60,7 +60,6 @@ public class NeuralNetworkCalculation {
 			//check if the node needs to be updated, and if it does,
 			//update the node and set the remaning to true. 
 			for(NetworkCalculationNode node : network){ 
-				System.out.println("NodeID " + node.getNodeID());
 
 				if(node.checkIfNeedsToBeUpdated()){
 					remaning = true;
