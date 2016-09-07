@@ -3,7 +3,7 @@ package tech.deef.neuralnetwork.network.nodes;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import tech.deef.neuralnetwork.network.globals.PrintingGlobals;
+import tech.deef.neuralnetwork.globals.PrintingGlobals;
 
 public class NetworkCalculationNode {
 
