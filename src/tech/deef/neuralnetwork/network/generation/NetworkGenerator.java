@@ -179,8 +179,8 @@ public class NetworkGenerator {
 		if (!nodeIDs.equals("()")) {
 			// prints the nodes to be attempted to be added to the array list of
 			// integers.
-			if (PrintingGlobals.PRINT_SETTING_NODES_FOR_NODE_INFORATION) {
-				System.out.print("NIDs " + nodeIDs + ": ");
+			if (PrintingGlobals.PRINT_SETTING_INPUT_NODES_FOR_NODE_INFORATION) {
+				System.out.print("\nNIDs " + nodeIDs + ": ");
 			}
 			ArrayList<Integer> parsedNodes = new ArrayList<Integer>();
 			ArrayList<String> unparsedNodes = new ArrayList<String>(
@@ -189,16 +189,12 @@ public class NetworkGenerator {
 			for (int i = 0; i < unparsedNodes.size(); i++) {
 				// this print output the node connection id as it was added to
 				// parsed nodes.
-				if (PrintingGlobals.PRINT_SETTING_NODES_FOR_NODE_INFORATION) {
+				if (PrintingGlobals.PRINT_SETTING_INPUT_NODES_FOR_NODE_INFORATION) {
 					System.out.print(unparsedNodes.get(i) + ": ");
 				}
 				parsedNodes.add(Integer.parseInt(unparsedNodes.get(i)));
 			}
 
-			// newline for seperation
-			if (PrintingGlobals.PRINT_SETTING_NODES_FOR_NODE_INFORATION) {
-				System.out.println("\n");
-			}
 
 			return parsedNodes;
 		}

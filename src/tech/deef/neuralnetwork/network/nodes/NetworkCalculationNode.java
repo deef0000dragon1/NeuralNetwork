@@ -31,8 +31,8 @@ public class NetworkCalculationNode {
 	// calculationFunction as well.
 	public void setNodes(ArrayList<NetworkCalculationNode> nodes) {
 		// this print informs what node is having it's nodes set.
-		if (PrintingGlobals.PRINT_SETTING_NODES_FOR_NODE_INFORATION) {
-			System.out.println("setting nodes for node " + nodeID);
+		if (PrintingGlobals.PRINT_SETTING_INPUT_NODES_FOR_NODE_INFORATION) {
+			System.out.println("\nset nodes for node " + nodeID);
 		}
 		inputNodes = nodes;
 		inputNodePreviousValues = new ArrayList<Double>(inputNodes.size());
