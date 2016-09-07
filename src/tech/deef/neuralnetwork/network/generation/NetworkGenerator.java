@@ -3,7 +3,7 @@ package tech.deef.neuralnetwork.network.generation;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import tech.deef.neuralnetwork.network.globals.PrintingGlobals;
+import tech.deef.neuralnetwork.globals.PrintingGlobals;
 import tech.deef.neuralnetwork.network.nodes.*;
 
 /*
@@ -47,8 +47,9 @@ public class NetworkGenerator {
 
 				// get the current node string
 				workingString = stringFormatNodes.get(i);
-				System.out.println("\n" + workingString);
-
+				if (PrintingGlobals.PRINT_RAW_INPUT_STRING_TO_BE_PARSED) {
+					System.out.println("\n" + workingString);
+				}
 				// get the location of the first seperator, set the command from
 				// the
 				// { to the first seperator, then update working
@@ -56,23 +57,26 @@ public class NetworkGenerator {
 				command = workingString.substring(1, segmentSplitter);
 				workingString = workingString.substring(segmentSplitter);
 
-				System.out.println("C " + command);
-
+				if (PrintingGlobals.PRINT_COMMAND_ORDER_INPUT_PARSED_INFORMATION) {
+					System.out.println("C " + command);
+				}
 				// get the location of the seperator, set the orderID from the
 				// { to the first seperator, then update working
 				segmentSplitter = workingString.substring(1).indexOf('|');
 				orderID = Integer.parseInt(workingString.substring(1, segmentSplitter + 1));
 				workingString = workingString.substring(segmentSplitter + 1);
 
-				System.out.println("O " + orderID);
-
+				if (PrintingGlobals.PRINT_COMMAND_ORDER_INPUT_PARSED_INFORMATION) {
+					System.out.println("O " + orderID);
+				}
 				// get the location of the first seperator, set the Nodes from
 				// the
 				// { to the first seperator, then update working
 				inputNodes = workingString.substring(1, workingString.length() - 1);
 
-				System.out.println("I " + inputNodes);
-
+				if (PrintingGlobals.PRINT_COMMAND_ORDER_INPUT_PARSED_INFORMATION) {
+					System.out.println("I " + inputNodes);
+				}
 				// figure out the propper command to create.
 				// TODO determine how to give the system a passthrough from this
 				// point that can be used
@@ -176,8 +180,9 @@ public class NetworkGenerator {
 
 				// get the current node string
 				workingString = stringFormatNodes.get(i);
-				System.out.println("\n" + workingString);
-
+				if (PrintingGlobals.PRINT_RAW_INPUT_STRING_TO_BE_PARSED) {
+					System.out.println("\n" + workingString);
+				}
 				// get the location of the first seperator, set the command from
 				// the
 				// { to the first seperator, then update working
@@ -185,23 +190,26 @@ public class NetworkGenerator {
 				command = workingString.substring(1, segmentSplitter);
 				workingString = workingString.substring(segmentSplitter);
 
-				System.out.println("C " + command);
-
+				if (PrintingGlobals.PRINT_COMMAND_ORDER_INPUT_PARSED_INFORMATION) {
+					System.out.println("C " + command);
+				}
 				// get the location of the seperator, set the orderID from the
 				// { to the first seperator, then update working
 				segmentSplitter = workingString.substring(1).indexOf('|');
 				orderID = Integer.parseInt(workingString.substring(1, segmentSplitter + 1));
 				workingString = workingString.substring(segmentSplitter + 1);
 
-				System.out.println("O " + orderID);
-
+				if (PrintingGlobals.PRINT_COMMAND_ORDER_INPUT_PARSED_INFORMATION) {
+					System.out.println("O " + orderID);
+				}
 				// get the location of the first seperator, set the Nodes from
 				// the
 				// { to the first seperator, then update working
 				inputNodes = workingString.substring(1, workingString.length() - 1);
 
-				System.out.println("I " + inputNodes);
-
+				if (PrintingGlobals.PRINT_COMMAND_ORDER_INPUT_PARSED_INFORMATION) {
+					System.out.println("I " + inputNodes);
+				}
 				// figure out the propper command to create.
 				// TODO determine how to give the system a passthrough from this
 				// point that can be used
