@@ -1,13 +1,9 @@
 package tech.deef.neuralnetwork.network.test;
 
-import static org.junit.Assert.*;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
-
-import org.junit.Test;
 
 import tech.deef.neuralnetwork.globals.PrintingGlobals;
 import tech.deef.neuralnetwork.network.calculate.NeuralNetworkCalculation;
@@ -67,7 +63,7 @@ public class TestNeuralNetwork {
 
 			String input = "";
 			ArrayList<NetworkCalculationNode> network;
-			// create storaeg network
+			// create storage network
 			File testFile1 = new File("testfile2.txt");
 			// get the test file piece 1
 			Scanner scanner = new Scanner(testFile1);
