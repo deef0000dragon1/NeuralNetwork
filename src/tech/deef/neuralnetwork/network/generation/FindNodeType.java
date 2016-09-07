@@ -31,32 +31,35 @@ public class FindNodeType {
 			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> 9);
 		case "const10":
 			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> 10);
-		case "conste":
-			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> Math.PI);
 		case "constpi":
+			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> Math.PI);
+		case "conste":
 			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> Math.E);
-		/*
-		 * case "classfetch":
-		 * *********************************************************************
-		 * ***************************************** // TODO implement
-		 * classFetch return new NetworkCalculationNode(orderID,
-		 * (ArrayList<NetworkCalculationNode> nodes) -> 1); case "typefetch": //
-		 * TODO implement typeFetch return new NetworkCalculationNode(orderID,
-		 * (ArrayList<NetworkCalculationNode> nodes) -> 1); case "numberfetch":
-		 * // TODO implement numberFetch return new
-		 * NetworkCalculationNode(orderID,
-		 * command,(ArrayList<NetworkCalculationNode> nodes) -> 1); case
-		 * "costeffectfetch": // TODO implement costEffectFetch return new
-		 * NetworkCalculationNode(orderID, (ArrayList<NetworkCalculationNode>
-		 * nodes) -> 1); case "stockeffectfetch": // TODO implement
-		 * stockEffectFetch return new NetworkCalculationNode(orderID,
-		 * command,(ArrayList<NetworkCalculationNode> nodes) -> 1); case
-		 * "timeeffectfeth": // TODO implement timeEffectFeth return new
-		 * NetworkCalculationNode(orderID, (ArrayList<NetworkCalculationNode>
-		 * nodes) -> 1); case "timeeffectfetch": // TODO implement
-		 * timeEffectFetch return new NetworkCalculationNode(orderID,
-		 * command,(ArrayList<NetworkCalculationNode> nodes) -> 1);
-		 **********************************/
+		
+		//UNIMPLEMENTED CLASS CODE. DO AS SOON AS FEASIBLE.
+		case "classfetch":
+		// TODO implement classFetch 
+			 return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> 1); 
+		case "typefetch":
+		//TODO implement typeFetch 
+			 return new NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode> nodes) -> 1); 
+		case "numberfetch":
+		// TODO implement numberFetch 
+			 return new NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode> nodes) -> 1); 
+		case "costeffectfetch": 
+		// TODO implement costEffectFetch 
+			 return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> 1); 
+		case "stockeffectfetch": 
+		// TODO implement stockEffectFetch 
+			return new NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode> nodes) -> 1); 
+		case "timeeffectfeth": 
+		// TODO implement timeEffectFeth 
+			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> 1); 
+		case "timeeffectfetch": 
+		// TODO implement timeEffectFetch 
+			return new NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode> nodes) -> 1);
+		
+		
 		case "equalto":
 			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> {
 				if (nodes.get(0).getValue() == nodes.get(1).getValue()) {
