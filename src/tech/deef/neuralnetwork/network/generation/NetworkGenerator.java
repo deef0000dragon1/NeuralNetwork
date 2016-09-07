@@ -131,29 +131,17 @@ public class NetworkGenerator {
 
 			if (singleNodeInputSources != null) {
 				for (Integer orderIDFromNode : singleNodeInputSources) {
-					int temp = orderIDs.indexOf(orderIDFromNode);// get the
-																	// index of
-																	// the input
-																	// node from
-																	// the
-																	// random id
-					nodesToBeAddedAsSources.add(networkNodes.get(temp));// add
-																		// the
-																		// node
-																		// as an
-																		// input
-																		// using
-																		// said
-																		// index.
+					
+					int temp = orderIDs.indexOf(orderIDFromNode);
+					//get the index from the input node random id
+					
+					nodesToBeAddedAsSources.add(networkNodes.get(temp));
+					//add the node as an input node using sid index
 				}
 			}
 
-			networkNodes.get(i).setNodes(nodesToBeAddedAsSources);// set the
-																	// inpu
-																	// nodes
-																	// using the
-																	// list
-																	// gotten.
+			networkNodes.get(i).setNodes(nodesToBeAddedAsSources);
+			//set the input nodes using the list gotten
 
 		}
 
