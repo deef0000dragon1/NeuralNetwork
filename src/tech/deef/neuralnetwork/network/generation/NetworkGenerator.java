@@ -3,6 +3,7 @@ package tech.deef.neuralnetwork.network.generation;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import tech.deef.neuralnetwork.network.globals.PrintingGlobals;
 import tech.deef.neuralnetwork.network.nodes.*;
 
 /*
@@ -19,8 +20,9 @@ public class NetworkGenerator {
 
 	// creates a specialized network using a given input.
 	// uses an arraylist of precreated nodes to be added to the generator.
-	public static ArrayList<NetworkCalculationNode> generateSingleInputNetwork(String listOfNodes, ArrayList<NetworkCalculationNode> inputNodeList) {
-		
+	public static ArrayList<NetworkCalculationNode> generateSingleInputNetwork(String listOfNodes,
+			ArrayList<NetworkCalculationNode> inputNodeList) {
+
 		ArrayList<NetworkCalculationNode> networkNodes = new ArrayList<NetworkCalculationNode>();
 		ArrayList<Integer> orderIDs = new ArrayList<Integer>();
 		ArrayList<String> nodeInputSources = new ArrayList<String>();
@@ -64,8 +66,6 @@ public class NetworkGenerator {
 
 				System.out.println("O " + orderID);
 
-				
-
 				// get the location of the first seperator, set the Nodes from
 				// the
 				// { to the first seperator, then update working
@@ -79,7 +79,7 @@ public class NetworkGenerator {
 				// as the set value system for the inputs.
 				networkNodes.add(findNodeType(command, orderID, null));
 
-				//add to lists 
+				// add to lists
 				orderIDs.add(orderID);
 				nodeInputSources.add(inputNodes);
 
@@ -96,15 +96,15 @@ public class NetworkGenerator {
 			}
 
 		}
-		
-		//add the given input nodes to the list of nodes wanted. 
-		
-		for(NetworkCalculationNode extraNode: inputNodeList){
+
+		// add the given input nodes to the list of nodes wanted.
+
+		for (NetworkCalculationNode extraNode : inputNodeList) {
 			networkNodes.add(extraNode);
 			orderIDs.add(extraNode.getNodeID());
 			nodeInputSources.add(extraNode.getInputNodes());
 		}
-		
+
 		// loop trough all nodes and add the necessary node sources to the list
 		// of nodes.
 		for (int i = 0; i < networkNodes.size(); i++) {
@@ -119,19 +119,35 @@ public class NetworkGenerator {
 
 			if (singleNodeInputSources != null) {
 				for (Integer orderIDFromNode : singleNodeInputSources) {
-					int temp = orderIDs.indexOf(orderIDFromNode);//get the index of the input node from the random id
-					nodesToBeAddedAsSources.add(networkNodes.get(temp));//add the node as an input using said index.
+					int temp = orderIDs.indexOf(orderIDFromNode);// get the
+																	// index of
+																	// the input
+																	// node from
+																	// the
+																	// random id
+					nodesToBeAddedAsSources.add(networkNodes.get(temp));// add
+																		// the
+																		// node
+																		// as an
+																		// input
+																		// using
+																		// said
+																		// index.
 				}
 			}
 
-			networkNodes.get(i).setNodes(nodesToBeAddedAsSources);//set the inpu nodes using the list gotten.
+			networkNodes.get(i).setNodes(nodesToBeAddedAsSources);// set the
+																	// inpu
+																	// nodes
+																	// using the
+																	// list
+																	// gotten.
 
 		}
 
 		// loop through and add the inputs directally to the list.
 
-		return networkNodes;	
-
+		return networkNodes;
 
 	}
 
@@ -179,8 +195,6 @@ public class NetworkGenerator {
 
 				System.out.println("O " + orderID);
 
-				
-
 				// get the location of the first seperator, set the Nodes from
 				// the
 				// { to the first seperator, then update working
@@ -194,7 +208,7 @@ public class NetworkGenerator {
 				// as the set value system for the inputs.
 				networkNodes.add(findNodeType(command, orderID, null));
 
-				//add to lists 
+				// add to lists
 				orderIDs.add(orderID);
 				nodeInputSources.add(inputNodes);
 
@@ -211,11 +225,9 @@ public class NetworkGenerator {
 			}
 
 		}
-		
-		//add the given input nodes to the list of nodes wanted. 
-		
 
-		
+		// add the given input nodes to the list of nodes wanted.
+
 		// loop trough all nodes and add the necessary node sources to the list
 		// of nodes.
 		for (int i = 0; i < networkNodes.size(); i++) {
@@ -230,12 +242,29 @@ public class NetworkGenerator {
 
 			if (singleNodeInputSources != null) {
 				for (Integer orderIDFromNode : singleNodeInputSources) {
-					int temp = orderIDs.indexOf(orderIDFromNode);//get the index of the input node from the random id
-					nodesToBeAddedAsSources.add(networkNodes.get(temp));//add the node as an input using said index.
+					int temp = orderIDs.indexOf(orderIDFromNode);// get the
+																	// index of
+																	// the input
+																	// node from
+																	// the
+																	// random id
+					nodesToBeAddedAsSources.add(networkNodes.get(temp));// add
+																		// the
+																		// node
+																		// as an
+																		// input
+																		// using
+																		// said
+																		// index.
 				}
 			}
 
-			networkNodes.get(i).setNodes(nodesToBeAddedAsSources);//set the inpu nodes using the list gotten.
+			networkNodes.get(i).setNodes(nodesToBeAddedAsSources);// set the
+																	// inpu
+																	// nodes
+																	// using the
+																	// list
+																	// gotten.
 
 		}
 
@@ -255,20 +284,28 @@ public class NetworkGenerator {
 	private static ArrayList<Integer> ParseNodeSources(String nodeIDs) {
 
 		if (!nodeIDs.equals("()")) {
-			//prints the nodes to be attempted to be added to the array list of integers.
-			//System.out.print("NIDs " + nodeIDs + ": ");
+			// prints the nodes to be attempted to be added to the array list of
+			// integers.
+			if (PrintingGlobals.PRINT_SETTING_NODES_FOR_NODE_INFORATION) {
+				System.out.print("NIDs " + nodeIDs + ": ");
+			}
 			ArrayList<Integer> parsedNodes = new ArrayList<Integer>();
 			ArrayList<String> unparsedNodes = new ArrayList<String>(
 					Arrays.asList(nodeIDs.substring(1, nodeIDs.length() - 1).split(",")));
 
 			for (int i = 0; i < unparsedNodes.size(); i++) {
-				//this print output the node connection id as it was added to parsed nodes. 
-				//System.out.print(unparsedNodes.get(i) + ": ");
+				// this print output the node connection id as it was added to
+				// parsed nodes.
+				if (PrintingGlobals.PRINT_SETTING_NODES_FOR_NODE_INFORATION) {
+					System.out.print(unparsedNodes.get(i) + ": ");
+				}
 				parsedNodes.add(Integer.parseInt(unparsedNodes.get(i)));
 			}
 
-			//newline for seperation
-			//System.out.println("\n");
+			// newline for seperation
+			if (PrintingGlobals.PRINT_SETTING_NODES_FOR_NODE_INFORATION) {
+				System.out.println("\n");
+			}
 
 			return parsedNodes;
 		}
@@ -326,29 +363,29 @@ public class NetworkGenerator {
 		case "const0":
 			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> 0);
 		case "const1":
-			return new NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode> nodes) -> 1);
+			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> 1);
 		case "const2":
-			return new NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode> nodes) -> 2);
+			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> 2);
 		case "const3":
-			return new NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode> nodes) -> 3);
+			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> 3);
 		case "const4":
-			return new NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode> nodes) -> 4);
+			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> 4);
 		case "const5":
-			return new NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode> nodes) -> 5);
+			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> 5);
 		case "const6":
-			return new NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode> nodes) -> 6);
+			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> 6);
 		case "const7":
-			return new NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode> nodes) -> 7);
+			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> 7);
 		case "const8":
-			return new NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode> nodes) -> 8);
+			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> 8);
 		case "const9":
-			return new NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode> nodes) -> 9);
+			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> 9);
 		case "const10":
-			return new NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode> nodes) -> 10);
+			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> 10);
 		case "conste":
-			return new NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode> nodes) -> Math.PI);
+			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> Math.PI);
 		case "constpi":
-			return new NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode> nodes) -> Math.E);
+			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> Math.E);
 		/*
 		 * case "classfetch":
 		 * *********************************************************************
@@ -358,21 +395,21 @@ public class NetworkGenerator {
 		 * TODO implement typeFetch return new NetworkCalculationNode(orderID,
 		 * (ArrayList<NetworkCalculationNode> nodes) -> 1); case "numberfetch":
 		 * // TODO implement numberFetch return new
-		 * NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode>
-		 * nodes) -> 1); case "costeffectfetch": // TODO implement
-		 * costEffectFetch return new NetworkCalculationNode(orderID,
-		 * (ArrayList<NetworkCalculationNode> nodes) -> 1); case
-		 * "stockeffectfetch": // TODO implement stockEffectFetch return new
-		 * NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode>
-		 * nodes) -> 1); case "timeeffectfeth": // TODO implement timeEffectFeth
-		 * return new NetworkCalculationNode(orderID,
-		 * (ArrayList<NetworkCalculationNode> nodes) -> 1); case
-		 * "timeeffectfetch": // TODO implement timeEffectFetch return new
-		 * NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode>
-		 * nodes) -> 1);
+		 * NetworkCalculationNode(orderID,
+		 * command,(ArrayList<NetworkCalculationNode> nodes) -> 1); case
+		 * "costeffectfetch": // TODO implement costEffectFetch return new
+		 * NetworkCalculationNode(orderID, (ArrayList<NetworkCalculationNode>
+		 * nodes) -> 1); case "stockeffectfetch": // TODO implement
+		 * stockEffectFetch return new NetworkCalculationNode(orderID,
+		 * command,(ArrayList<NetworkCalculationNode> nodes) -> 1); case
+		 * "timeeffectfeth": // TODO implement timeEffectFeth return new
+		 * NetworkCalculationNode(orderID, (ArrayList<NetworkCalculationNode>
+		 * nodes) -> 1); case "timeeffectfetch": // TODO implement
+		 * timeEffectFetch return new NetworkCalculationNode(orderID,
+		 * command,(ArrayList<NetworkCalculationNode> nodes) -> 1);
 		 **********************************/
 		case "equalto":
-			return new NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode> nodes) -> {
+			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> {
 				if (nodes.get(0).getValue() == nodes.get(1).getValue()) {
 					return 1;
 				} else {
@@ -380,7 +417,7 @@ public class NetworkGenerator {
 				}
 			});
 		case "equaltorange":
-			return new NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode> nodes) -> {
+			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> {
 				if (nodes.get(0).getValue() <= nodes.get(1).getValue() + nodes.get(2).getValue()
 						&& nodes.get(0).getValue() >= nodes.get(1).getValue() - nodes.get(2).getValue()) {
 					return 1;
@@ -389,7 +426,7 @@ public class NetworkGenerator {
 				}
 			});
 		case "notequalto":
-			return new NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode> nodes) -> {
+			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> {
 				if (nodes.get(0).getValue() != nodes.get(1).getValue()) {
 					return 1;
 				} else {
@@ -397,7 +434,7 @@ public class NetworkGenerator {
 				}
 			});
 		case "notequaltor":
-			return new NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode> nodes) -> {
+			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> {
 				// a > b+n or a < b-n
 				if (nodes.get(0).getValue() > nodes.get(1).getValue() + nodes.get(2).getValue()
 						|| nodes.get(0).getValue() < nodes.get(1).getValue() - nodes.get(2).getValue()) {
@@ -407,7 +444,7 @@ public class NetworkGenerator {
 				}
 			});
 		case "greaterthan":
-			return new NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode> nodes) -> {
+			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> {
 				if (nodes.get(0).getValue() > nodes.get(1).getValue()) {
 					return 1;
 				} else {
@@ -415,7 +452,7 @@ public class NetworkGenerator {
 				}
 			});
 		case "lessthan":
-			return new NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode> nodes) -> {
+			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> {
 				if (nodes.get(0).getValue() < nodes.get(1).getValue()) {
 					return 1;
 				} else {
@@ -423,7 +460,7 @@ public class NetworkGenerator {
 				}
 			});
 		case "greaterthanorequalto":
-			return new NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode> nodes) -> {
+			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> {
 				if (nodes.get(0).getValue() >= nodes.get(1).getValue()) {
 					return 1;
 				} else {
@@ -431,7 +468,7 @@ public class NetworkGenerator {
 				}
 			});
 		case "lessthanorequalto":
-			return new NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode> nodes) -> {
+			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> {
 				if (nodes.get(0).getValue() <= nodes.get(1).getValue()) {
 					return 1;
 				} else {
@@ -439,19 +476,19 @@ public class NetworkGenerator {
 				}
 			});
 		case "add":
-			return new NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode> nodes) -> {
+			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> {
 				return (nodes.get(1).getValue() + nodes.get(0).getValue());
 			});
 		case "subtract":
-			return new NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode> nodes) -> {
+			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> {
 				return (nodes.get(1).getValue() - nodes.get(0).getValue());
 			});
 		case "multiply":
-			return new NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode> nodes) -> {
+			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> {
 				return (nodes.get(1).getValue() * nodes.get(0).getValue());
 			});
 		case "divide":
-			return new NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode> nodes) -> {
+			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> {
 				if (nodes.get(1).getValue() == 0 && nodes.get(0).getValue() > 0) {
 					return Double.MAX_VALUE;
 				}
@@ -463,19 +500,19 @@ public class NetworkGenerator {
 				return (nodes.get(0).getValue() / nodes.get(1).getValue());
 			});
 		case "power":
-			return new NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode> nodes) -> {
+			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> {
 				return Math.pow(nodes.get(0).getValue(), nodes.get(1).getValue());
 			});
 		case "log":// TODO implement log through log rules.
-			return new NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode> nodes) -> {
+			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> {
 				return Math.pow(nodes.get(0).getValue(), nodes.get(1).getValue());
 			});
 		case "absolutevalue":
-			return new NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode> nodes) -> {
+			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> {
 				return Math.abs(nodes.get(0).getValue());
 			});
 		case "modulous":
-			return new NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode> nodes) -> {
+			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> {
 				return nodes.get(0).getValue() % nodes.get(1).getValue();
 			});
 		case "increment":
@@ -485,7 +522,7 @@ public class NetworkGenerator {
 			return new NetworkCalculationNode(orderID, command,
 					(ArrayList<NetworkCalculationNode> nodes) -> nodes.get(0).getValue() - 1);
 		case "invert":
-			return new NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode> nodes) -> {
+			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> {
 				if (nodes.get(0).getValue() == 0) {
 					return Double.MAX_VALUE;
 				}
@@ -496,7 +533,7 @@ public class NetworkGenerator {
 			return new NetworkCalculationNode(orderID, command,
 					(ArrayList<NetworkCalculationNode> nodes) -> nodes.get(0).getValue() * -1);
 		case "sum":
-			return new NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode> nodes) -> {
+			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> {
 				double total = 0;
 				for (NetworkCalculationNode node : nodes) {
 					total = total + node.getValue();
@@ -504,7 +541,7 @@ public class NetworkGenerator {
 				return total;
 			});
 		case "average":
-			return new NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode> nodes) -> {
+			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> {
 				double total = 0;
 				for (NetworkCalculationNode node : nodes) {
 					total = total + node.getValue();
@@ -512,7 +549,7 @@ public class NetworkGenerator {
 				return total / nodes.size();
 			});
 		case "highest":
-			return new NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode> nodes) -> {
+			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> {
 				double high = -Double.MAX_VALUE;
 				for (NetworkCalculationNode node : nodes) {
 					if (node.getValue() > high) {
@@ -522,7 +559,7 @@ public class NetworkGenerator {
 				return high;
 			});
 		case "lowest":
-			return new NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode> nodes) -> {
+			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> {
 				double high = Double.MAX_VALUE;
 				for (NetworkCalculationNode node : nodes) {
 					if (node.getValue() < high) {
@@ -568,21 +605,21 @@ public class NetworkGenerator {
 			return new NetworkCalculationNode(orderID, command,
 					(ArrayList<NetworkCalculationNode> nodes) -> Math.atan(nodes.get(0).getValue()));
 		case "and":
-			return new NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode> nodes) -> 1);
+			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> 1);
 		case "or":
-			return new NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode> nodes) -> 1);
+			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> 1);
 		case "not":
-			return new NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode> nodes) -> 1);
+			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> 1);
 		case "nor":
-			return new NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode> nodes) -> 1);
+			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> 1);
 		case "nand":
-			return new NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode> nodes) -> 1);
+			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> 1);
 		case "exor":
-			return new NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode> nodes) -> 1);
+			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> 1);
 		case "exnor":
-			return new NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode> nodes) -> 1);
+			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> 1);
 		case "leftshift":
-			return new NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode> nodes) -> {
+			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> {
 				if (nodes.get(1) != null) {
 					return ((int) nodes.get(0).getValue() << (int) nodes.get(1).getValue());
 				}
@@ -590,7 +627,7 @@ public class NetworkGenerator {
 				return ((int) nodes.get(0).getValue() << 1);
 			});
 		case "rightshift":
-			return new NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode> nodes) -> {
+			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> {
 				if (nodes.get(1) != null) {
 					return ((int) nodes.get(0).getValue() >> (int) nodes.get(1).getValue());
 				}
@@ -598,14 +635,14 @@ public class NetworkGenerator {
 				return ((int) nodes.get(0).getValue() >> 1);
 			});
 		case "tansig":
-			return new NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode> nodes) -> {
+			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> {
 				return (2 / (1 + Math.exp(-2 * nodes.get(0).getValue()))) - 1;
 			});
 		case "passthrough":
 			return new NetworkCalculationNode(orderID, command,
 					(ArrayList<NetworkCalculationNode> nodes) -> nodes.get(0).getValue());
 		case "constantn":
-			return new ConstantInputCalculationNode(orderID, command,null, new Passthrough(0));
+			return new ConstantInputCalculationNode(orderID, command, null, new Passthrough(0));
 
 		/*
 		 * case "register": *************NOT IMPLEMENTABLE IN CURRENT
