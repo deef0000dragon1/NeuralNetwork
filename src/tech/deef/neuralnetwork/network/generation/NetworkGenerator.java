@@ -27,7 +27,7 @@ public class NetworkGenerator {
 
 	// creates a specialized network using a given input.
 	// uses an arraylist of precreated nodes to be added to the generator.
-	public static ArrayList<NetworkCalculationNode> generateSingleInputNetwork(String listOfNodes,
+	public static ArrayList<NetworkCalculationNode> generateNetwork(String listOfNodes,
 																			   ArrayList<NetworkCalculationNode> inputNodeList) 
 	{
 		ArrayList<NetworkCalculationNode> networkNodes = new ArrayList<NetworkCalculationNode>();
@@ -108,12 +108,13 @@ public class NetworkGenerator {
 
 		}
 
-		// add the given input nodes to the list of nodes wanted.
-
-		for (NetworkCalculationNode extraNode : inputNodeList) {
-			networkNodes.add(extraNode);
-			orderIDs.add(extraNode.getNodeID());
-			nodeInputSources.add(extraNode.getInputNodes());
+		// add the given input nodes to the list of nodes wanted if not null.
+		if(inputNodeList != null){
+			for (NetworkCalculationNode extraNode : inputNodeList) {
+				networkNodes.add(extraNode);
+				orderIDs.add(extraNode.getNodeID());
+				nodeInputSources.add(extraNode.getInputNodes());
+			}
 		}
 
 		// loop trough all nodes and add the necessary node sources to the list
@@ -163,132 +164,16 @@ public class NetworkGenerator {
 	}
 
 	public static ArrayList<NetworkCalculationNode> generateNetwork(String listOfNodes) {
-		ArrayList<NetworkCalculationNode> networkNodes = new ArrayList<NetworkCalculationNode>();
-		ArrayList<Integer> orderIDs = new ArrayList<Integer>();
-		ArrayList<String> nodeInputSources = new ArrayList<String>();
-
-		listOfNodes = removeWhiteSpace(listOfNodes);
-
-		ArrayList<String> stringFormatNodes = new ArrayList<String>();
-		stringFormatNodes = seperateNodeStrings(listOfNodes);
-		// loop variables
-
-		String workingString;
-		String command;
-		int orderID;
-		String inputNodes;
-		int segmentSplitter;
-
-		// loops through all nodes and creates them.
-		for (int i = 0; i < stringFormatNodes.size(); i++) {
-
-			try {
-				// remove whitespace
-
-				// get the current node string
-				workingString = stringFormatNodes.get(i);
-				if (PrintingGlobals.PRINT_RAW_INPUT_STRING_TO_BE_PARSED) {
-					System.out.println("\n" + workingString);
-				}
-				// get the location of the first seperator, set the command from
-				// the
-				// { to the first seperator, then update working
-				segmentSplitter = workingString.indexOf('|');
-				command = workingString.substring(1, segmentSplitter);
-				workingString = workingString.substring(segmentSplitter);
-
-				if (PrintingGlobals.PRINT_COMMAND_ORDER_INPUT_PARSED_INFORMATION) {
-					System.out.println("C " + command);
-				}
-				// get the location of the seperator, set the orderID from the
-				// { to the first seperator, then update working
-				segmentSplitter = workingString.substring(1).indexOf('|');
-				orderID = Integer.parseInt(workingString.substring(1, segmentSplitter + 1));
-				workingString = workingString.substring(segmentSplitter + 1);
-
-				if (PrintingGlobals.PRINT_COMMAND_ORDER_INPUT_PARSED_INFORMATION) {
-					System.out.println("O " + orderID);
-				}
-				// get the location of the first seperator, set the Nodes from
-				// the
-				// { to the first seperator, then update working
-				inputNodes = workingString.substring(1, workingString.length() - 1);
-
-				if (PrintingGlobals.PRINT_COMMAND_ORDER_INPUT_PARSED_INFORMATION) {
-					System.out.println("I " + inputNodes);
-				}
-				// figure out the propper command to create.
-				// TODO determine how to give the system a passthrough from this
-				// point that can be used
-				// as the set value system for the inputs.
-				networkNodes.add(FindNodeType.findNodeType(command, orderID, null));
-
-				// add to lists
-				orderIDs.add(orderID);
-				nodeInputSources.add(inputNodes);
-
-			} catch (NumberFormatException e) {
-				System.out.flush();
-				e.printStackTrace();
-				// ignored.
-			} catch (NullPointerException e) {
-				// also ignored Presuming that there is an error in creation,
-				// but will handle code for
-				System.out.flush();
-				e.printStackTrace();
-
-			}
-
-		}
-
-		// add the given input nodes to the list of nodes wanted.
-
-		// loop trough all nodes and add the necessary node sources to the list
-		// of nodes.
-		for (int i = 0; i < networkNodes.size(); i++) {
-			// get string of nodes with random ID
-			// parse into list of node ids
-			// take nodeIDs and loop through them, adding the actual nodes to a
-			// list
-			// add the list of nodes to the node itself.
-
-			ArrayList<Integer> singleNodeInputSources = ParseNodeSources(nodeInputSources.get(i));
-			ArrayList<NetworkCalculationNode> nodesToBeAddedAsSources = new ArrayList<NetworkCalculationNode>();
-
-			if (singleNodeInputSources != null) {
-				for (Integer orderIDFromNode : singleNodeInputSources) {
-					int temp = orderIDs.indexOf(orderIDFromNode);// get the
-																	// index of
-																	// the input
-																	// node from
-																	// the
-																	// random id
-					nodesToBeAddedAsSources.add(networkNodes.get(temp));// add
-																		// the
-																		// node
-																		// as an
-																		// input
-																		// using
-																		// said
-																		// index.
-				}
-			}
-
-			networkNodes.get(i).setNodes(nodesToBeAddedAsSources);// set the
-																	// inpu
-																	// nodes
-																	// using the
-																	// list
-																	// gotten.
-
-		}
-
-		// loop through and add the inputs directally to the list.
-
-		return networkNodes;
+		return generateNetwork(listOfNodes, null);
 	}
 
-	// removes all whitespace from the noces
+	
+	
+	/**
+	 * @param listOfNodes String removes all whitespace
+	 * @return String 
+	 * 
+	 * */
 	private static String removeWhiteSpace(String listOfNodes) {
 
 		return listOfNodes.replaceAll("\\s+", "");

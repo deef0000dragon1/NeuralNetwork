@@ -39,7 +39,7 @@ public class NeuralNetworkCalculation {
 	// generates a network using a precreated series of nodes along with the
 	// input string.
 	public NeuralNetworkCalculation(String input, ArrayList<NetworkCalculationNode> preparedNodes, int finalNode) {
-		this(NetworkGenerator.generateSingleInputNetwork(input, preparedNodes), finalNode);
+		this(NetworkGenerator.generateNetwork(input, preparedNodes), finalNode);
 	}
 
 	public void calculateNetwork() {
