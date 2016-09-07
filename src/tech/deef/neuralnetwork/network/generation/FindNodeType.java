@@ -155,9 +155,9 @@ public class FindNodeType {
 			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> {
 				return Math.pow(nodes.get(0).getValue(), nodes.get(1).getValue());
 			});
-		case "log":// TODO implement log through log rules.
+		case "log":
 			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> {
-				return Math.pow(nodes.get(0).getValue(), nodes.get(1).getValue());
+				return Math.log(nodes.get(1).getValue())/Math.log(nodes.get(0).getValue());
 			});
 		case "absolutevalue":
 			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> {
