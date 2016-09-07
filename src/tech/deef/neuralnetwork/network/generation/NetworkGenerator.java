@@ -8,12 +8,19 @@ import tech.deef.neuralnetwork.network.nodes.NetworkCalculationNode;
 
 /*
  * given a string, generate a neural network. 
- * each node in the network is represented by a specialty character and a lettter sequence that gives the function.
- * this is followed by a numberic string that represents the identfier code for the node. Following is a list of other nodes inside a set of (), comma delimited. 
+ * 
+ * each node in the network is represented by a specialty character 
+ * and a lettter sequence that gives the function.
+ * 
+ * this is followed by a numberic string that represents 
+ * the identfier code for the node. Following is a list 
+ * of other nodes inside a set of (), comma delimited. 
+ * 
  * IE {Operation|OrderID|RandomID|(RID1,RID2,RID3,RID4)}
  * Full string is surounded by [ and ]
  * 
- * The random IDs are checked when the node is created, to make sure that no node with that ID exists. Checked externaly;
+ * The random IDs are checked when the node is created, 
+ * to make sure that no node with that ID exists. Checked externaly;
  * 
 */
 public class NetworkGenerator {
@@ -21,13 +28,13 @@ public class NetworkGenerator {
 	// creates a specialized network using a given input.
 	// uses an arraylist of precreated nodes to be added to the generator.
 	public static ArrayList<NetworkCalculationNode> generateSingleInputNetwork(String listOfNodes,
-			ArrayList<NetworkCalculationNode> inputNodeList) {
-
+																			   ArrayList<NetworkCalculationNode> inputNodeList) 
+	{
 		ArrayList<NetworkCalculationNode> networkNodes = new ArrayList<NetworkCalculationNode>();
 		ArrayList<Integer> orderIDs = new ArrayList<Integer>();
 		ArrayList<String> nodeInputSources = new ArrayList<String>();
 
-		listOfNodes = removeWhiteSpace(listOfNodes);
+		listOfNodes = removeWhiteSpace(listOfNodes);//removes all whitespace from the string itself. 
 
 		ArrayList<String> stringFormatNodes = new ArrayList<String>();
 		stringFormatNodes = seperateNodeStrings(listOfNodes);
@@ -287,8 +294,13 @@ public class NetworkGenerator {
 		return listOfNodes.replaceAll("\\s+", "");
 	}
 
-	// takes in a string of nodeIDs (n1,n2,n3,n4) and returns a list of integers
-	// representing that set of nodes.
+	/** 
+	 * @param nodeIDs
+	 * 				the string that contains the input node ids 
+	 * 				the string has a form of (n1,n2...n3,n4) 
+	 * 
+	 * @return ArrayList<integer> returns an arraylist of the input integers. 
+	*/
 	private static ArrayList<Integer> ParseNodeSources(String nodeIDs) {
 
 		if (!nodeIDs.equals("()")) {
@@ -320,13 +332,6 @@ public class NetworkGenerator {
 		return null;
 	}
 
-	// sepearte the nodes into a list of strings
-	// create all of the nodes
-	// add nodes to a list
-	// add id to a list with paralell index
-	// add list of input nodes to a list with a paralell index
-	// using the created nodes, udate the nodes to the
-
 	/**
 	 * 
 	 * @param genome
@@ -341,14 +346,13 @@ public class NetworkGenerator {
 		ArrayList<String> seperatedNodes = new ArrayList<String>();
 
 		genome = genome.substring(genome.indexOf('['), genome.indexOf(']') + 1);
-		// remove all characters excluding those oof the first "[" and "]"
-
-		// if (genome.charAt(0) == '[' && genome.charAt(genome.length() - 1) ==
-		// ']') {
+		// remove all excess characters excluding those of the first "[" and "]"
+		
 		boolean in = false;
 		int start = 0;
 		int end = 0;
 		for (int i = 0; i < genome.length(); i++) {
+			//loops through looking for the next '{'or'}'
 			if ((genome.charAt(i) == '{') && !in) {
 				start = i;
 				in = true;
@@ -359,11 +363,7 @@ public class NetworkGenerator {
 				seperatedNodes.add(genome.substring(start, end + 1));
 			}
 		}
-
-		// }
-
 		return seperatedNodes;
-
 	}
 
 	
