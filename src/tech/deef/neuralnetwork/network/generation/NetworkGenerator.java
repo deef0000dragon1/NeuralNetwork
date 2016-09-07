@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import tech.deef.neuralnetwork.globals.PrintingGlobals;
-import tech.deef.neuralnetwork.network.nodes.*;
+import tech.deef.neuralnetwork.network.nodes.NetworkCalculationNode;
 
 /*
  * given a string, generate a neural network. 
