@@ -6,11 +6,10 @@ import java.util.Random;
 import tech.deef.neuralnetwork.network.calculate.NeuralNetworkCalculation;
 import tech.deef.neuralnetwork.network.nodes.NetworkCalculationNode;
 
-/* generates a new network from a given neural network
- * the only inputs are the network (in string or in physical form) anda  mutator value
+/** generates a new network from a given neural network
+ * the only inputs are the network (in string or in physical form) and a  mutator value 
+ * This mutator value is expected to be between 0 and 1.
  * the higher the mutator value, the higher the number of mutations that will occur. 
- * 
- * FUTURE TODO: add aditional inputs for different types of muttations, such as the 
  * 
  */
 
@@ -25,26 +24,19 @@ public class NetworkMutator {
 		genomeSequence = network.toString();
 	}
 	
-	public void setMutationLevel(double level){
-		if(level >= 0){
-			mutationPercentile = level/100;
-		}else{
-			mutationPercentile = .005;
-			return;
-		}
-		if(level < 100){
-			mutationPercentile = 1-(1/level);
-		}
+	//set the level of the mutation
+	public void setMutationLevel(double mutationLevel){
+			mutationPercentile = mutationLevel;
 	}
 	
-	//does mutation with the current key as the current time in milliseconds.
+	//No Key Overload, uses current time a key. 
 	public String startMutation(){
 		return startMutation((int) System.currentTimeMillis());
 	}
 	
 	/**
 	 * calculates a new network from the given network using the mutationLevel
-	 * uses the input as the random number generator key. 
+	 * uses key as the random number generator seed. 
 	 *
 	 * CURRENT GOAL:
 	 *		mutates current nodes
@@ -102,6 +94,9 @@ public class NetworkMutator {
 		//replace all inputs that previous nodes had with new node. 
 		//repeat. 
 		
+		
+		//this number is the number of nodes that will be added to the node set. 
+		int adding = (int) Math.pow(nodes.size(), 0.5+((rand.nextDouble()-0.5)*0.1));
 		
 		return null;
 	}
