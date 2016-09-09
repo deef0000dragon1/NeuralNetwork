@@ -22,6 +22,18 @@ public class testObject{
 		return resultant;
 	}
 	
+	public double getPower() {
+		return power;
+	}
+
+	public double getMultiplier() {
+		return multiplier;
+	}
+
+	public double getAdder() {
+		return adder;
+	}
+	
 	public String toString(){
 		NumberFormat formatter = new DecimalFormat("#0.0000000"); 
 		return ("eqn: Math.pow(base," 

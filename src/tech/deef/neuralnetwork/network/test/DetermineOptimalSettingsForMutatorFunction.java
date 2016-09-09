@@ -12,31 +12,48 @@ public class DetermineOptimalSettingsForMutatorFunction {
 		testObject testobj = null;
 		double r = 0;
 		double large = 1;
-		// double adder = .17440;
-		// double power = .2803010;
-		for (double power = .280; power <= .285; power += .00001) {
-			for (double multiplier = .710; multiplier <= .711; multiplier += .0000001) {
-				for (double adder = .172; adder <= .178; adder += .000001) {
-					r = calcResultant(power, multiplier, adder);
-					if (r <= large) {
-						testobj = new testObject(power, multiplier, adder, r);
-						tested.add(testobj);
-						large = r;
-						if (System.currentTimeMillis() > time + 500) {
-							time = System.currentTimeMillis();
-							System.out.println(testobj.toString() + " Size: " + tested.size());
+		double accuracy = .01;
+		double plo = .1;
+		double phi = 1;
+		double mlo = .01;
+		double mhi = 1;
+		double alo = .01;
+		double ahi = 1;
+		
+		while (accuracy > .0000000000001) {
+			tested.clear();
+			for (double power = plo; power <= phi; power += accuracy) {
+				for (double multiplier = mlo; multiplier <= mhi; multiplier += accuracy) {
+					for (double adder = alo; adder <= ahi; adder += accuracy) {
+						r = calcResultant(power, multiplier, adder);
+						if (r <= large) {
+							testobj = new testObject(power, multiplier, adder, r);
+							tested.add(testobj);
+							large = r;
 						}
 					}
 				}
 			}
+			
+			Collections.sort(tested, new Comparator<testObject>() {
+
+				public int compare(testObject o1, testObject o2) {
+					return Double.compare(o1.getResultant(), o2.getResultant());
+				}
+			});
+			
+			plo = tested.get(0).getPower()-accuracy*10;
+			phi = tested.get(0).getPower()+accuracy*10;
+			mlo = tested.get(0).getMultiplier()-accuracy*10;
+			mhi = tested.get(0).getMultiplier()+accuracy*10;
+			alo = tested.get(0).getAdder()-accuracy*10;
+			ahi = tested.get(0).getAdder()+accuracy*10;
+			System.out.println(tested.get(0).toString());
+			accuracy = accuracy /10.0;
+			System.out.println("Accuracy: " + accuracy*10);
+			
 		}
 
-		Collections.sort(tested, new Comparator<testObject>() {
-
-			public int compare(testObject o1, testObject o2) {
-				return Double.compare(o2.getResultant(), o1.getResultant());
-			}
-		});
 
 		System.out.println("low " + tested.get(0).toString());
 		System.out.println(tested.size());
