@@ -10,32 +10,34 @@ public class DetermineOptimalSettingsForMutatorFunction {
 		long time = System.currentTimeMillis();
 		ArrayList<testObject> tested = new ArrayList<testObject>();
 		testObject testobj = null;
-		double r = 1;
-		
-		//double adder = .17440;
-		double power = .2803010;
-		//for(double power = .280; power <= .285; power += .00001){
-			for(double multiplier = .710; multiplier <= .711; multiplier += .0000001){
-				for(double adder = .172; adder <= .178; adder += .000001){
+		double r = 0;
+		double large = 1;
+		// double adder = .17440;
+		// double power = .2803010;
+		for (double power = .280; power <= .285; power += .00001) {
+			for (double multiplier = .710; multiplier <= .711; multiplier += .0000001) {
+				for (double adder = .172; adder <= .178; adder += .000001) {
 					r = calcResultant(power, multiplier, adder);
-					if(r < .054){
-					testobj = new testObject(power, multiplier, adder, r);
-					tested.add(testobj);
-					if(System.currentTimeMillis() > time + 500){
-						time = System.currentTimeMillis();
-						System.out.println(testobj.toString() + " Size: "+  tested.size());
-					}}
-				}	
-			//}			
+					if (r <= large) {
+						testobj = new testObject(power, multiplier, adder, r);
+						tested.add(testobj);
+						large = r;
+						if (System.currentTimeMillis() > time + 500) {
+							time = System.currentTimeMillis();
+							System.out.println(testobj.toString() + " Size: " + tested.size());
+						}
+					}
+				}
+			}
 		}
-		
+
 		Collections.sort(tested, new Comparator<testObject>() {
-		    
-		    public int compare(testObject o1, testObject o2) {
-		        return Double.compare(o1.getResultant(), o2.getResultant());
-		    }
+
+			public int compare(testObject o1, testObject o2) {
+				return Double.compare(o2.getResultant(), o1.getResultant());
+			}
 		});
-		
+
 		System.out.println("low " + tested.get(0).toString());
 		System.out.println(tested.size());
 
