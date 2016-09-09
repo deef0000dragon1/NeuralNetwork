@@ -112,4 +112,11 @@ public class NetworkMutator {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	private int calculateNumberOfNodesToAdd(int numberOfNodes, double mutatorValue, Random rand){
+		double powerFunctionOutput = (Math.pow(mutatorValue, .05))*0.615+.27; //calculates the power of the function
+		double randomizerVal = (((rand.nextDouble()-0.5)*2) / 10) * powerFunctionOutput; //calculates the random power mutation
+		return (int) Math.pow(numberOfNodes, (powerFunctionOutput + randomizerVal)); // calculates the total number of nodes to add
+		
+	}
 }
