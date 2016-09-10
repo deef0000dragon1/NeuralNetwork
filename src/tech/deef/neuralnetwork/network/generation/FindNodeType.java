@@ -7,7 +7,7 @@ import tech.deef.neuralnetwork.network.nodes.NetworkCalculationNode;
 import tech.deef.neuralnetwork.network.nodes.Passthrough;
 
 public class FindNodeType {
-	public static NetworkCalculationNode findNodeType(String command, int orderID, Object o) {
+	public static NetworkCalculationNode findNodeType(String command, int orderID) {
 		switch (command) {
 		case "const0":
 			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> 0);

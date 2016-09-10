@@ -88,8 +88,9 @@ public class NetworkGenerator {
 				// TODO determine how to give the system a passthrough from this
 				// point that can be used
 				// as the set value system for the inputs.
-				networkNodes.add(FindNodeType.findNodeType(command, orderID, null));
-
+				networkNodes.add(FindNodeType.findNodeType(command, orderID));
+				
+				
 				// add to lists
 				orderIDs.add(orderID);
 				nodeInputSources.add(inputNodes);
