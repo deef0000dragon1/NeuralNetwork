@@ -138,8 +138,13 @@ public class NetworkMutator {
 				//get a node that can be changed.
 			}
 			
-			NetworkCalculationNode changedNode = nodes.get(nodeN);
+			int newFunction = rand.nextInt(functions.size());
 			
+			NetworkCalculationNode changedNode = nodes.get(nodeN);
+			nodes.remove(changedNode);
+			String replace = changedNode.toString();
+			replace.replace(changedNode.getNodeType(), functions.get(newFunction));
+			nodes.add(DecodeNodeString.decodeNode(replace));
 			
 		}
 		
