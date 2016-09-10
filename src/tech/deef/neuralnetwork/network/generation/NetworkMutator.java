@@ -109,7 +109,7 @@ public class NetworkMutator {
 		//this number is the number of nodes that will be added to the node set. 		
 		for(int i = 0; i < numToAdd; i++){
 			nodes = addNewNode(nodes);
-			//cenerate lists in this function and pass them into the next one.
+			//create lists in this function and pass them into the next one.
 		}
 		
 		return nodes;
@@ -128,9 +128,21 @@ public class NetworkMutator {
 		return null;
 	}
 	
-	private ArrayList<NetworkCalculationNode> alterNodeFunctions(Random rand, ArrayList<NetworkCalculationNode> nodes,
-			int functionsToChange) {
-		// TODO create alter nodeFunctions function
+	private ArrayList<NetworkCalculationNode> alterNodeFunctions(Random rand, ArrayList<NetworkCalculationNode> nodes, int functionsToChange) {
+		int nodeN;
+		for(int i = 0; i < functionsToChange; i++){
+			
+			nodeN = 1 + rand.nextInt(nodes.size()-1);
+			while(!functions.contains(nodes.get(nodeN).getNodeType())){
+				nodeN = 1 + rand.nextInt(nodes.size()-1);
+				//get a node that can be changed.
+			}
+			
+			NetworkCalculationNode changedNode = nodes.get(nodeN);
+			
+			
+		}
+		
 		return null;
 	}
 	

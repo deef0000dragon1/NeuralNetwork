@@ -10,11 +10,11 @@ package tech.deef.neuralnetwork.globals;
  * */
 public final class PrintingGlobals {
 
-	public static final boolean PRINT_NODE_ID_INFORMATION = false;
-	public static final boolean PRINT_UPDATEING_INFORMATION = false;
-	public static final boolean PRINT_SETTING_INPUT_NODES_FOR_NODE_INFORATION = false;
-	public static final boolean PRINT_COMMAND_ORDER_INPUT_PARSED_INFORMATION = false;
-	public static final boolean PRINT_RAW_INPUT_STRING_TO_BE_PARSED = false;
-	public static final boolean PRINT_TEST_NETWORK_STRING = false;
+	public static final boolean PRINT_NODE_ID_INFORMATION = true;
+	public static final boolean PRINT_UPDATEING_INFORMATION = true;
+	public static final boolean PRINT_SETTING_INPUT_NODES_FOR_NODE_INFORATION = true;
+	public static final boolean PRINT_COMMAND_ORDER_INPUT_PARSED_INFORMATION = true;
+	public static final boolean PRINT_RAW_INPUT_STRING_TO_BE_PARSED = true;
+	public static final boolean PRINT_TEST_NETWORK_STRING = true;
 	
 }
