@@ -17,6 +17,8 @@ public class NetworkMutator {
 	NeuralNetworkCalculation network;
 	double mutationPercentile;
 	String genomeSequence;
+	
+	
 	public NetworkMutator(NeuralNetworkCalculation inputNetwork, double mutationLevel){
 		network = inputNetwork;
 		
@@ -29,7 +31,7 @@ public class NetworkMutator {
 			mutationPercentile = mutationLevel;
 	}
 	
-	//No Key Overload, uses current time a key. 
+	//No-key Overload, uses current time a key. 
 	public String startMutation(){
 		return startMutation((int) System.currentTimeMillis());
 	}
@@ -74,6 +76,11 @@ public class NetworkMutator {
 		
 		return null;
 	}
+	//how to mutate
+	//add new nodes
+	//randomize current nodes
+	//clean up function
+	
 	
 	//************************Mutation Methods**********************************
 	
