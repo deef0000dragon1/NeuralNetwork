@@ -60,7 +60,7 @@ public class NetworkGenerator {
 				NetworkCalculationNode addToList = DecodeNodeString.decodeNode(workingString);
 				
 				orderIDs.add(addToList.getNodeID());
-				nodeInputSources.add(addToList.getInputNodes());
+				nodeInputSources.add(addToList.getInputNodeString());
 				networkNodes.add(addToList);
 				// add to lists
 

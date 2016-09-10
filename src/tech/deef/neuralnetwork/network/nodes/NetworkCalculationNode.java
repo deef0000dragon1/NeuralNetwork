@@ -14,6 +14,7 @@ public class NetworkCalculationNode {
 	protected int nodeID;
 	protected Calculation calculateFunction;
 	protected String nodeType;
+	protected String InputNodeString;
 
 	// node constructor.
 	// given the ids for each item and the function. builds it and sets update
@@ -129,5 +130,13 @@ public class NetworkCalculationNode {
 			nodeStrings = nodeStrings.substring(0, nodeStrings.length() - 1);
 		}
 		return "{" + getNodeType() + "|" + getNodeID() + "|(" + nodeStrings + ")}";
+	}
+
+	public String getInputNodeString() {
+		return InputNodeString;
+	}
+
+	public void setInputNodeString(String inputNodeString) {
+		InputNodeString = inputNodeString;
 	}
 }

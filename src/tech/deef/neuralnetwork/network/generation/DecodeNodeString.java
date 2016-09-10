@@ -46,7 +46,9 @@ public class DecodeNodeString {
 			// TODO determine how to give the system a passthrough from this
 			// point that can be used
 			// as the set value system for the inputs.
-			return FindNodeType.findNodeType(command, orderID);
+			NetworkCalculationNode node =FindNodeType.findNodeType(command, orderID);
+			node.setInputNodeString(inputNodes);
+			return node;
 
 		}
 }
