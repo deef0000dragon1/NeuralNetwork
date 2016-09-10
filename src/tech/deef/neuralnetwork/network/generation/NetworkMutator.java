@@ -1,6 +1,7 @@
 package tech.deef.neuralnetwork.network.generation;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import tech.deef.neuralnetwork.network.calculate.NeuralNetworkCalculation;
@@ -18,40 +19,40 @@ public class NetworkMutator {
 	double addLinkagesPercentile;
 	double changeLinkagesPercentile;
 	double changeFunctionPercentile;
-	String genomeSequence;
+	List<String> functions;
 	
 	public double getAddLinkagesPercentile() {
 		return addLinkagesPercentile;
 	}
-
 	public double getChangeLinkagesPercentile() {
 		return changeLinkagesPercentile;
-	}
-	
+	}	
 	public double getChangeFunctionPercentile() {
 		return changeFunctionPercentile;
 	}
-
+	public List<String> getFunctions(){
+		return functions;
+	}
 	public void setAddLinkagesPercentile(double addMutationPercentile) {
 		this.addLinkagesPercentile = addMutationPercentile;
 	}
-
 	public void setChangeLinkagesPercentile(double changeMutationPercentile) {
 		this.changeLinkagesPercentile = changeMutationPercentile;
 	}
-	
 	public void setChangeFunctionPercentile(double changeMutationPercentile) {
 		this.changeFunctionPercentile = changeMutationPercentile;
 	}
+	public void setFunctions(List<String> functions){
+		this.functions = functions;
+	}
 	
-	
-	public NetworkMutator(NeuralNetworkCalculation inputNetwork, double addLinkagesLevel, double changnLinkagesLevel, double changeFunctionLevel){
+	public NetworkMutator(NeuralNetworkCalculation inputNetwork, double addLinkagesLevel, double changnLinkagesLevel, double changeFunctionLevel, List<String> functions){
 		setChangeLinkagesPercentile(changnLinkagesLevel);
 		setAddLinkagesPercentile(addLinkagesLevel);
 		setChangeFunctionPercentile(changeFunctionLevel);
+		setFunctions(functions);
 		
 		network = inputNetwork;
-		genomeSequence = network.toString();
 	}
 	
 	
@@ -60,8 +61,6 @@ public class NetworkMutator {
 	public String startMutation(){
 		return startMutation((int) System.currentTimeMillis());
 	}
-	
-	
 	
 	/**
 	 * calculates a new network from the given network using the mutationLevel
