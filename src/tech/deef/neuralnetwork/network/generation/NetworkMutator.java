@@ -15,26 +15,47 @@ import tech.deef.neuralnetwork.network.nodes.NetworkCalculationNode;
 
 public class NetworkMutator {
 	NeuralNetworkCalculation network;
-	double mutationPercentile;
+	double addMutationPercentile;
+	double changeMutationPercentile;
 	String genomeSequence;
 	
+	public double getAddMutationPercentile() {
+		return addMutationPercentile;
+	}
+
+	public double getChangeMutationPercentile() {
+		return changeMutationPercentile;
+	}
+
+	public void setAddMutationPercentile(double addMutationPercentile) {
+		this.addMutationPercentile = addMutationPercentile;
+	}
+
+	public void setChangeMutationPercentile(double changeMutationPercentile) {
+		this.changeMutationPercentile = changeMutationPercentile;
+	}
 	
-	public NetworkMutator(NeuralNetworkCalculation inputNetwork, double mutationLevel){
+	
+	
+	public NetworkMutator(NeuralNetworkCalculation inputNetwork, double addLevel, double changeLevel){
 		network = inputNetwork;
 		
-		setMutationLevel(mutationLevel);
+		setMutationLevel(addLevel, changeLevel);
 		genomeSequence = network.toString();
 	}
 	
 	//set the level of the mutation
-	public void setMutationLevel(double mutationLevel){
-			mutationPercentile = mutationLevel;
+	public void setMutationLevel(double addLevel, double changeLevel){
+			addMutationPercentile = addLevel;
+			changeMutationPercentile = changeLevel;
 	}
 	
 	//No-key Overload, uses current time a key. 
 	public String startMutation(){
 		return startMutation((int) System.currentTimeMillis());
 	}
+	
+	
 	
 	/**
 	 * calculates a new network from the given network using the mutationLevel
@@ -51,63 +72,67 @@ public class NetworkMutator {
 		Random rand = new Random(key);
 		
 		ArrayList<NetworkCalculationNode> nodes = network.getNetworkNodes();
-		ArrayList<Integer> randomize = new ArrayList<Integer>(nodes.size());
-		//calculate and mutate the nodes tat need to be changed. 
-		for(int i = 0; i <= nodes.size(); i++){
-			if(rand.nextDouble() >= mutationPercentile){
-				nodes.set(i, mutateNode(nodes.get(i)));
-			}
-		}
-		
 		
 		//calculate the number of nodes that need to be added.
-		int numToAdd = 0;
-		for(int i = 0; i <= nodes.size(); i++){
-			if(rand.nextDouble() >= mutationPercentile){
-				numToAdd++;
-				//may act as the node addition item
-			}
-		}
+		int nodesToAdd = calculateNumberOfNodesToAdd(network.getNetworkNodes().size(), addMutationPercentile, rand);
+		int linkagesToChange = calculateNumberOfNodesToAdd(network.getNetworkNodes().size(), changeMutationPercentile, rand);
+		int functionsToChange = calculateNumberOfNodesToAdd(network.getNetworkNodes().size(), changeMutationPercentile, rand);
 		
-		nodes = addNewNodes(rand, nodes, numToAdd);
-		nodes = alterNodeLinkages(rand, nodes, (int)(numToAdd*1.375));		
-		//TODO: check all connections are valid and have necessary number of inputs
+		nodes = addNewNodes(rand, nodes, nodesToAdd);
+		nodes = alterNodeLinkages(rand, nodes, linkagesToChange);		
+		nodes = alterNodeFunctions(rand, nodes, functionsToChange);
 		//TODO: mutate connections
 		
 		return null;
 	}
+	
+
 	//how to mutate
 	//add new nodes
-	//randomize current nodes
+		//calculate number to add
+		//add
+			//random node
+			//random connections
+	//randomize current node linkages
+	//randomize current node types
 	//clean up function
 	
 	
 	//************************Mutation Methods**********************************
 	
-	private ArrayList<NetworkCalculationNode> alterNodeLinkages(Random rand, ArrayList<NetworkCalculationNode> nodes, int numToChange) {
-
-		
-		return null;
-	}
-	
-
 	private ArrayList<NetworkCalculationNode> addNewNodes(Random rand, ArrayList<NetworkCalculationNode> nodes, int numToAdd) {
+		//this number is the number of nodes that will be added to the node set. 		
+		for(int i = 0; i < numToAdd; i++){
+			nodes = addNewNode(nodes);
+			//cenerate lists in this function and pass them into the next one.
+		}
+		
+		return nodes;
+	}
+
+	private ArrayList<NetworkCalculationNode> alterNodeLinkages(Random rand, ArrayList<NetworkCalculationNode> nodes, int numToChange) {
 		//generate arraylist or arraylists that maps a list of the number of nodes and their connections. 
-		//generate list of all nodes that deliver an output. 
-		//while num is less than numToAdd
-		//generate a new node. 
-		//take node and find a random node to replace n of the outputs on.
-		//randomly chose if the node is a fill replacement, or only a sinlge replacement.
-		//replace all inputs that previous nodes had with new node. 
-		//repeat. 
-		
-		
-		//this number is the number of nodes that will be added to the node set. 
-		int adding = (int) Math.pow(nodes.size(), 0.5+((rand.nextDouble()-0.5)*0.1));
+				//generate list of all nodes that deliver an output. 
+				//while num is less than numToAdd
+				//generate a new node. 
+				//take node and find a random node to replace n of the outputs on.
+				//randomly chose if the node is a fill replacement, or only a sinlge replacement.
+				//replace all inputs that previous nodes had with new node. 
+				//repeat. 
 		
 		return null;
 	}
 	
+	private ArrayList<NetworkCalculationNode> alterNodeFunctions(Random rand, ArrayList<NetworkCalculationNode> nodes,
+			int functionsToChange) {
+		// TODO create alter nodeFunctions function
+		return null;
+	}
+	
+	private ArrayList<NetworkCalculationNode> addNewNode(ArrayList<NetworkCalculationNode> nodes) {
+		// TODO Create add new node function
+		return null;
+	}
 	
 	/**
 	 * takes in a node,
@@ -129,4 +154,6 @@ public class NetworkMutator {
 		return (int) Math.pow(numberOfNodes, (powerFunctionOutput + randomizerVal)); // calculates the total number of nodes to add
 		
 	}
+
+	
 }
