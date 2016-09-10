@@ -52,7 +52,7 @@ public class NeuralNetworkCalculation {
 
 		for (int i = 0; i < network.size(); i++) {
 			if (PrintingGlobals.PRINT_UPDATEING_INFORMATION) {
-				System.out.println("updating:" + i);
+				System.out.println("Inital updating:" + i);
 			}
 			network.get(i).update();
 		}
@@ -67,7 +67,7 @@ public class NeuralNetworkCalculation {
 			// update the node and set the remaning to true.
 			for (NetworkCalculationNode node : network) {
 				if (PrintingGlobals.PRINT_NODE_ID_INFORMATION) {
-					System.out.println("NodeID " + node.getNodeID());
+					System.out.println("Runtime Updating: " + node.getNodeID());
 				}
 				if (node.checkIfNeedsToBeUpdated()) {
 					remaning = true;
