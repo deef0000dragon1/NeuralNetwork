@@ -15,40 +15,46 @@ import tech.deef.neuralnetwork.network.nodes.NetworkCalculationNode;
 
 public class NetworkMutator {
 	NeuralNetworkCalculation network;
-	double addMutationPercentile;
-	double changeMutationPercentile;
+	double addLinkagesPercentile;
+	double changeLinkagesPercentile;
+	double changeFunctionPercentile;
 	String genomeSequence;
 	
-	public double getAddMutationPercentile() {
-		return addMutationPercentile;
+	public double getAddLinkagesPercentile() {
+		return addLinkagesPercentile;
 	}
 
-	public double getChangeMutationPercentile() {
-		return changeMutationPercentile;
+	public double getChangeLinkagesPercentile() {
+		return changeLinkagesPercentile;
+	}
+	
+	public double getChangeFunctionPercentile() {
+		return changeFunctionPercentile;
 	}
 
-	public void setAddMutationPercentile(double addMutationPercentile) {
-		this.addMutationPercentile = addMutationPercentile;
+	public void setAddLinkagesPercentile(double addMutationPercentile) {
+		this.addLinkagesPercentile = addMutationPercentile;
 	}
 
-	public void setChangeMutationPercentile(double changeMutationPercentile) {
-		this.changeMutationPercentile = changeMutationPercentile;
+	public void setChangeLinkagesPercentile(double changeMutationPercentile) {
+		this.changeLinkagesPercentile = changeMutationPercentile;
+	}
+	
+	public void setChangeFunctionPercentile(double changeMutationPercentile) {
+		this.changeFunctionPercentile = changeMutationPercentile;
 	}
 	
 	
-	
-	public NetworkMutator(NeuralNetworkCalculation inputNetwork, double addLevel, double changeLevel){
-		network = inputNetwork;
+	public NetworkMutator(NeuralNetworkCalculation inputNetwork, double addLinkagesLevel, double changnLinkagesLevel, double changeFunctionLevel){
+		setChangeLinkagesPercentile(changnLinkagesLevel);
+		setAddLinkagesPercentile(addLinkagesLevel);
+		setChangeFunctionPercentile(changeFunctionLevel);
 		
-		setMutationLevel(addLevel, changeLevel);
+		network = inputNetwork;
 		genomeSequence = network.toString();
 	}
 	
-	//set the level of the mutation
-	public void setMutationLevel(double addLevel, double changeLevel){
-			addMutationPercentile = addLevel;
-			changeMutationPercentile = changeLevel;
-	}
+	
 	
 	//No-key Overload, uses current time a key. 
 	public String startMutation(){
@@ -74,9 +80,9 @@ public class NetworkMutator {
 		ArrayList<NetworkCalculationNode> nodes = network.getNetworkNodes();
 		
 		//calculate the number of nodes that need to be added.
-		int nodesToAdd = calculateNumberOfNodesToAdd(network.getNetworkNodes().size(), addMutationPercentile, rand);
-		int linkagesToChange = calculateNumberOfNodesToAdd(network.getNetworkNodes().size(), changeMutationPercentile, rand);
-		int functionsToChange = calculateNumberOfNodesToAdd(network.getNetworkNodes().size(), changeMutationPercentile, rand);
+		int nodesToAdd = calculateNumberOfNodesToAdd(network.getNetworkNodes().size(), addLinkagesPercentile, rand);
+		int linkagesToChange = calculateNumberOfNodesToAdd(network.getNetworkNodes().size(), changeLinkagesPercentile, rand);
+		int functionsToChange = calculateNumberOfNodesToAdd(network.getNetworkNodes().size(), changeLinkagesPercentile, rand);
 		
 		nodes = addNewNodes(rand, nodes, nodesToAdd);
 		nodes = alterNodeLinkages(rand, nodes, linkagesToChange);		
