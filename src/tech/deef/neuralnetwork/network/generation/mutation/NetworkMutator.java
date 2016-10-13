@@ -1,4 +1,4 @@
-package tech.deef.neuralnetwork.network.generation;
+package tech.deef.neuralnetwork.network.generation.mutation;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -15,26 +15,86 @@ import tech.deef.neuralnetwork.network.nodes.NetworkCalculationNode;
 
 public class NetworkMutator {
 	NeuralNetworkCalculation network;
-	double addMutationPercentile;
-	double changeMutationPercentile;
+	private double addMutationPercentile;
+	private double changeMutationPercentile;
+	
+	private double addNewNodesPercentile;
+	private double alterNodeFunctionsPercentile;
+	private double alterNodeLinkagesPercentile;
+	
 	String genomeSequence;
+	
+	private MutationAddNewNodes addNewNodes;
+	private MutationAlterNodeFunctions alterNodeFunctions;
+	private MutationAlterNodeLinkages alterNodeLinkages;
+	
+	
+	
+	public MutationAddNewNodes getAddNewNodes() {
+		return addNewNodes;
+	}
+
+	public void setAddNewNodes(MutationAddNewNodes addNewNodes) {
+		this.addNewNodes = addNewNodes;
+	}
+
+	public MutationAlterNodeFunctions getAlterNodeFunctions() {
+		return alterNodeFunctions;
+	}
+
+	public void setAlterNodeFunctions(MutationAlterNodeFunctions alterNodeFunctions) {
+		this.alterNodeFunctions = alterNodeFunctions;
+	}
+
+	public MutationAlterNodeLinkages getAlterNodeLinkages() {
+		return alterNodeLinkages;
+	}
+	
+
+	public void setAlterNodeLinkages(MutationAlterNodeLinkages alterNodeLinkages) {
+		this.alterNodeLinkages = alterNodeLinkages;
+	}
 	
 	public double getAddMutationPercentile() {
 		return addMutationPercentile;
-	}
-
-	public double getChangeMutationPercentile() {
-		return changeMutationPercentile;
 	}
 
 	public void setAddMutationPercentile(double addMutationPercentile) {
 		this.addMutationPercentile = addMutationPercentile;
 	}
 
+	public double getChangeMutationPercentile() {
+		return changeMutationPercentile;
+	}
+	
 	public void setChangeMutationPercentile(double changeMutationPercentile) {
 		this.changeMutationPercentile = changeMutationPercentile;
 	}
-	
+
+	public double getAddNewNodesPercentile() {
+		return addNewNodesPercentile;
+	}
+
+	public void setAddNewNodesPercentile(double addNewNodesPercentile) {
+		this.addNewNodesPercentile = addNewNodesPercentile;
+	}
+
+	public double getAlterNodeFunctionsPercentile() {
+		return alterNodeFunctionsPercentile;
+	}
+
+	public void setAlterNodeFunctionsPercentile(double alterNodeFunctionsPercentile) {
+		this.alterNodeFunctionsPercentile = alterNodeFunctionsPercentile;
+	}
+
+	public double getAlterNodeLinkagesPercentile() {
+		return alterNodeLinkagesPercentile;
+	}
+
+	public void setAlterNodeLinkagesPercentile(double alterNodeLinkagesPercentile) {
+		this.alterNodeLinkagesPercentile = alterNodeLinkagesPercentile;
+	}
+
 	
 	
 	public NetworkMutator(NeuralNetworkCalculation inputNetwork, double addLevel, double changeLevel){
