@@ -4,18 +4,26 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import tech.deef.neuralnetwork.network.nodes.Calculation;
 import tech.deef.neuralnetwork.network.nodes.ConstantInputCalculationNode;
 import tech.deef.neuralnetwork.network.nodes.NetworkCalculationNode;
 import tech.deef.neuralnetwork.network.nodes.Passthrough;
+	
+	
+	
 
 public class FindNodeType {
-	public static NetworkCalculationNode findNodeType(String command, int orderID, Object o) {
-		//TODO CONVERT TO MAP
+	
+	
+	private Map<String, Calculation> nodeTypeMap;
+	
+	public FindNodeType (){
+		nodeTypeMap = new HashMap<String, Calculation>();
+	}
+	
+	public void addAllTypes(){
 		
-		//Map<String, NetworkCalculationNode> nodeTypeMap = new HashMap<String, NetworkCalculationNode>();
-		
-		
-		
+		/*
 		switch (command) {
 		case "const0":
 			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> 0);
@@ -311,12 +319,26 @@ public class FindNodeType {
 		 * if(nodes.get(1).getValue() == 0){ memoryValue =
 		 * nodes.get(0).getValue(); } return memoryValue; }; return new
 		 * NetworkCalculationNode(orderID, command,t);
-		 */
+		 /
 		default:
 			// error log.
 			return new NetworkCalculationNode(orderID, "passthrough",
 					(ArrayList<NetworkCalculationNode> nodes) -> nodes.get(0).getValue());
 		}
-
+	
+		**/
+		
+		
+	}
+	
+	
+	public NetworkCalculationNode findNodeType(String command, int orderID, Object o) {
+		//TODO CONVERT TO MAP
+		
+		
+		return (nodeTypeMap.containsKey(command)? 
+				(new NetworkCalculationNode(orderID, "passthrough", nodeTypeMap.get(command))):
+				(new NetworkCalculationNode(orderID, "passthrough", 
+											(ArrayList<NetworkCalculationNode> nodes) -> nodes.get(0).getValue())));
 	}
 }
