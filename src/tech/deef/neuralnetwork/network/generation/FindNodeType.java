@@ -1,6 +1,8 @@
 package tech.deef.neuralnetwork.network.generation;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import tech.deef.neuralnetwork.network.nodes.ConstantInputCalculationNode;
 import tech.deef.neuralnetwork.network.nodes.NetworkCalculationNode;
@@ -8,6 +10,12 @@ import tech.deef.neuralnetwork.network.nodes.Passthrough;
 
 public class FindNodeType {
 	public static NetworkCalculationNode findNodeType(String command, int orderID, Object o) {
+		//TODO CONVERT TO MAP
+		
+		//Map<String, NetworkCalculationNode> nodeTypeMap = new HashMap<String, NetworkCalculationNode>();
+		
+		
+		
 		switch (command) {
 		case "const0":
 			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> 0);

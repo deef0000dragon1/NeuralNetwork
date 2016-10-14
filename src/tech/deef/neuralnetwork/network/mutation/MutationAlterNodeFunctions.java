@@ -1,14 +1,14 @@
-package tech.deef.neuralnetwork.network.generation.mutation;
+package tech.deef.neuralnetwork.network.mutation;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 import tech.deef.neuralnetwork.network.nodes.NetworkCalculationNode;
 
-public class MutationAddNewNodes {
+public class MutationAlterNodeFunctions {
 
-	public static ArrayList<NetworkCalculationNode> addNewNodes(Random rand, ArrayList<NetworkCalculationNode> nodes,
-			int nodesToAdd) {
+	public static ArrayList<NetworkCalculationNode> alterNodeFunctions(Random rand,
+			ArrayList<NetworkCalculationNode> nodes, int functionsToChange) {
 		// TODO Auto-generated method stub
 		return null;
 	}

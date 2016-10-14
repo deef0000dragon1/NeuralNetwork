@@ -1,4 +1,4 @@
-package tech.deef.neuralnetwork.network.generation.mutation;
+package tech.deef.neuralnetwork.network.mutation;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -150,8 +150,9 @@ public class NetworkMutator {
 		int functionsToChange = MutationAddNewNodes.calculateNumberOfNodesToAdd(network.getNetworkNodes().size(), changeMutationPercentile, rand);
 		int nodesToRemove = MutationRemoveNodes.calculateNumberOfNodesToRemove(network.getNetworkNodes().size(), removeNodePercentile, rand);
 		
+		//Assignment not necessary, but kept for clarity. effency loss miniscule. 
 		nodes = MutationAlterNodeLinkages.alterNodeLinkages(rand, nodes, linkagesToChange);		//randomly rewire different nodes.
-		nodes = MutationAlterNodeFunctions.alterNodeFunctions(rand, nodes, functionsToChange);	//randomly mutate different nodes. 
+		nodes = MutationAlterNodeFunctions.alterNodeFunctions(rand, nodes, functionsToChange);	//randomly mutate different nodes. TODO ADD LIST OF FINCIONS AS INPUT.
 		nodes = MutationRemoveNodes.removeNodes(rand, nodes, nodesToRemove);					//randomly remove different nodes.
 		nodes = MutationAddNewNodes.addNewNodes(rand, nodes, nodesToAdd);						//randomly create different nodes.
 		//TODO: mutate connections
