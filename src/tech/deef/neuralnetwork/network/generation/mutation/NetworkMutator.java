@@ -117,6 +117,9 @@ public class NetworkMutator {
 
 	
 	
+	
+	
+	
 	public NetworkMutator(NeuralNetworkCalculation inputNetwork){
 		genomeSequence = inputNetwork.toString();
 		network = new NeuralNetworkCalculation(genomeSequence, inputNetwork.getFinalNode());
@@ -133,12 +136,8 @@ public class NetworkMutator {
 	 * calculates a new network from the given network using the mutationLevel
 	 * uses key as the random number generator seed. 
 	 *
-	 * CURRENT GOAL:
-	 *		mutates current nodes
-	 *		adds new nodes in line
-	 *		Rearranges current node linkages. 
-	 *
-	 * TODO: add removeal posibility.
+	 * TODO: it may be prevelant to create an interface that allows for the usage of any number of mutators
+	 * 		This may be acomplished through a list of said mutators. 
 	 * */
 	public String startMutation(int key){
 		Random rand = new Random(key);
@@ -151,10 +150,10 @@ public class NetworkMutator {
 		int functionsToChange = MutationAddNewNodes.calculateNumberOfNodesToAdd(network.getNetworkNodes().size(), changeMutationPercentile, rand);
 		int nodesToRemove = MutationRemoveNodes.calculateNumberOfNodesToRemove(network.getNetworkNodes().size(), removeNodePercentile, rand);
 		
-		nodes = MutationAlterNodeLinkages.alterNodeLinkages(rand, nodes, linkagesToChange);		
-		nodes = MutationAlterNodeFunctions.alterNodeFunctions(rand, nodes, functionsToChange);
-		nodes = MutationRemoveNodes.removeNodes(rand, nodes, nodesToRemove);
-		nodes = MutationAddNewNodes.addNewNodes(rand, nodes, nodesToAdd);
+		nodes = MutationAlterNodeLinkages.alterNodeLinkages(rand, nodes, linkagesToChange);		//randomly rewire different nodes.
+		nodes = MutationAlterNodeFunctions.alterNodeFunctions(rand, nodes, functionsToChange);	//randomly mutate different nodes. 
+		nodes = MutationRemoveNodes.removeNodes(rand, nodes, nodesToRemove);					//randomly remove different nodes.
+		nodes = MutationAddNewNodes.addNewNodes(rand, nodes, nodesToAdd);						//randomly create different nodes.
 		//TODO: mutate connections
 		
 		return null;
