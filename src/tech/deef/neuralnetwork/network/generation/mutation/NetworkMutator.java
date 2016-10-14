@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import tech.deef.neuralnetwork.network.calculate.NeuralNetworkCalculation;
+import tech.deef.neuralnetwork.network.generation.NetworkGenerator;
 import tech.deef.neuralnetwork.network.nodes.NetworkCalculationNode;
 
 /** generates a new network from a given neural network
@@ -21,6 +22,7 @@ public class NetworkMutator {
 	private double addNewNodesPercentile;
 	private double alterNodeFunctionsPercentile;
 	private double alterNodeLinkagesPercentile;
+	private double removeNodePercentile;
 	
 	String genomeSequence;
 	
@@ -94,12 +96,30 @@ public class NetworkMutator {
 	public void setAlterNodeLinkagesPercentile(double alterNodeLinkagesPercentile) {
 		this.alterNodeLinkagesPercentile = alterNodeLinkagesPercentile;
 	}
+	
+	public double getRemoveNodePercentile() {
+		return removeNodePercentile;
+	}
+
+	public void setRemoveNodePercentile(double removeNodePercentile) {
+		this.removeNodePercentile = removeNodePercentile;
+	}
+	
+	//This finction sets all of the mutation percentiles. As each number to mutate is calculated 
+	//in it's own function The ability to modify the individual percentiles is not really necessary.
+	//as such, all percentiles can be set here at the same time. 
+	public void setMutationPercentiles( double mutationPercentiles){
+		this.addNewNodesPercentile = mutationPercentiles;
+		this.alterNodeFunctionsPercentile = mutationPercentiles;
+		this.alterNodeLinkagesPercentile = mutationPercentiles;
+		this.removeNodePercentile = mutationPercentiles;
+	}
 
 	
 	
 	public NetworkMutator(NeuralNetworkCalculation inputNetwork){
-		network = inputNetwork;
-		genomeSequence = network.toString();
+		genomeSequence = inputNetwork.toString();
+		network = new NeuralNetworkCalculation(genomeSequence, inputNetwork.getFinalNode());
 	}
 	
 	//No-key Overload, uses current time a key. 
@@ -125,11 +145,11 @@ public class NetworkMutator {
 		
 		ArrayList<NetworkCalculationNode> nodes = network.getNetworkNodes();
 		
-		//calculate the number of nodes that need to be added.
+		//calculate the number of nodes that need to be changed in each if the different ways. 
 		int nodesToAdd = MutationAlterNodeLinkages.calculateNumberOfNodesToAdd(network.getNetworkNodes().size(), addMutationPercentile, rand);
 		int linkagesToChange = MutationAlterNodeFunctions.calculateNumberOfNodesToAdd(network.getNetworkNodes().size(), changeMutationPercentile, rand);
 		int functionsToChange = MutationAddNewNodes.calculateNumberOfNodesToAdd(network.getNetworkNodes().size(), changeMutationPercentile, rand);
-		int nodesToRemove = MutationRemoveNodes.calculateNumberOfNodesToRemove(network.getNetworkNodes().size(), changeMutationPercentile, rand);
+		int nodesToRemove = MutationRemoveNodes.calculateNumberOfNodesToRemove(network.getNetworkNodes().size(), removeNodePercentile, rand);
 		
 		nodes = MutationAlterNodeLinkages.alterNodeLinkages(rand, nodes, linkagesToChange);		
 		nodes = MutationAlterNodeFunctions.alterNodeFunctions(rand, nodes, functionsToChange);
@@ -139,29 +159,7 @@ public class NetworkMutator {
 		
 		return null;
 	}
-	
 
-	//how to mutate
-	//add new nodes
-		//calculate number to add
-		//add
-			//random node
-			//random connections
-	//randomize current node linkages
-	//randomize current node types
-	//clean up function
-
-	
-	/**
-	 * takes in a node,
-	 * gets the node type
-	 * using the default typing table, changes the node, or changes the node completely
-	 * 
-	 * */
-	private NetworkCalculationNode mutateNode(NetworkCalculationNode networkCalculationNode) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 	
 

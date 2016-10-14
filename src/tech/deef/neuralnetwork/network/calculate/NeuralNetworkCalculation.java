@@ -13,6 +13,7 @@ public class NeuralNetworkCalculation {
 	public int itterations;
 	public double resultantValue;
 	public NetworkCalculationNode outputNode;
+	
 
 	// generates the network to be calculated uses the created network and the
 	// final node.
@@ -125,5 +126,10 @@ public class NeuralNetworkCalculation {
 		}
 
 		return Network + "]";
+	}
+
+	public int getFinalNode() {
+		// TODO Auto-generated method stub
+		return outputNode.getNodeID();
 	}
 }
