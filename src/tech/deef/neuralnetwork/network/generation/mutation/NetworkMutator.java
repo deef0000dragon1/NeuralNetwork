@@ -134,13 +134,14 @@ public class NetworkMutator {
 		ArrayList<NetworkCalculationNode> nodes = network.getNetworkNodes();
 		
 		//calculate the number of nodes that need to be added.
-		int nodesToAdd = calculateNumberOfNodesToAdd(network.getNetworkNodes().size(), addMutationPercentile, rand);
-		int linkagesToChange = calculateNumberOfNodesToAdd(network.getNetworkNodes().size(), changeMutationPercentile, rand);
-		int functionsToChange = calculateNumberOfNodesToAdd(network.getNetworkNodes().size(), changeMutationPercentile, rand);
+		int nodesToAdd = MutationAlterNodeLinkages.calculateNumberOfNodesToAdd(network.getNetworkNodes().size(), addMutationPercentile, rand);
+		int linkagesToChange = MutationAlterNodeFunctions.calculateNumberOfNodesToAdd(network.getNetworkNodes().size(), changeMutationPercentile, rand);
+		int functionsToChange = MutationAddNewNodes.calculateNumberOfNodesToAdd(network.getNetworkNodes().size(), changeMutationPercentile, rand);
 		
-		nodes = addNewNodes(rand, nodes, nodesToAdd);
-		nodes = alterNodeLinkages(rand, nodes, linkagesToChange);		
-		nodes = alterNodeFunctions(rand, nodes, functionsToChange);
+
+		nodes = MutationAlterNodeLinkages.alterNodeLinkages(rand, nodes, linkagesToChange);		
+		nodes = MutationAlterNodeFunctions.alterNodeFunctions(rand, nodes, functionsToChange);
+		nodes = MutationAddNewNodes.addNewNodes(rand, nodes, nodesToAdd);
 		//TODO: mutate connections
 		
 		return null;
@@ -156,43 +157,7 @@ public class NetworkMutator {
 	//randomize current node linkages
 	//randomize current node types
 	//clean up function
-	
-	
-	//************************Mutation Methods**********************************
-	
-	private ArrayList<NetworkCalculationNode> addNewNodes(Random rand, ArrayList<NetworkCalculationNode> nodes, int numToAdd) {
-		//this number is the number of nodes that will be added to the node set. 		
-		for(int i = 0; i < numToAdd; i++){
-			nodes = addNewNode(nodes);
-			//cenerate lists in this function and pass them into the next one.
-		}
-		
-		return nodes;
-	}
 
-	private ArrayList<NetworkCalculationNode> alterNodeLinkages(Random rand, ArrayList<NetworkCalculationNode> nodes, int numToChange) {
-		//generate arraylist or arraylists that maps a list of the number of nodes and their connections. 
-				//generate list of all nodes that deliver an output. 
-				//while num is less than numToAdd
-				//generate a new node. 
-				//take node and find a random node to replace n of the outputs on.
-				//randomly chose if the node is a fill replacement, or only a sinlge replacement.
-				//replace all inputs that previous nodes had with new node. 
-				//repeat. 
-		
-		return null;
-	}
-	
-	private ArrayList<NetworkCalculationNode> alterNodeFunctions(Random rand, ArrayList<NetworkCalculationNode> nodes,
-			int functionsToChange) {
-		// TODO create alter nodeFunctions function
-		return null;
-	}
-	
-	private ArrayList<NetworkCalculationNode> addNewNode(ArrayList<NetworkCalculationNode> nodes) {
-		// TODO Create add new node function
-		return null;
-	}
 	
 	/**
 	 * takes in a node,
@@ -205,15 +170,7 @@ public class NetworkMutator {
 		return null;
 	}
 	
-	private final static double MUTATOR = 0.2830554;
-	private final static double MULTIPLIER = 0.7105625;
-	private final static double ADDER = 0.1744375;
-	private int calculateNumberOfNodesToAdd(int numberOfNodes, double mutatorValue, Random rand){
-		double powerFunctionOutput = (Math.pow(mutatorValue, MUTATOR))*MULTIPLIER+ADDER; //calculates the power of the function
-		double randomizerVal = (((rand.nextDouble()-0.5)*2) / 10) * powerFunctionOutput; //calculates the random power mutation
-		return (int) Math.pow(numberOfNodes, (powerFunctionOutput + randomizerVal)); // calculates the total number of nodes to add
-		
-	}
+	
 
 	
 }
