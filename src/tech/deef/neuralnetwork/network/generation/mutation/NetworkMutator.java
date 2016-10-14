@@ -97,17 +97,9 @@ public class NetworkMutator {
 
 	
 	
-	public NetworkMutator(NeuralNetworkCalculation inputNetwork, double addLevel, double changeLevel){
+	public NetworkMutator(NeuralNetworkCalculation inputNetwork){
 		network = inputNetwork;
-		
-		setMutationLevel(addLevel, changeLevel);
 		genomeSequence = network.toString();
-	}
-	
-	//set the level of the mutation
-	public void setMutationLevel(double addLevel, double changeLevel){
-			addMutationPercentile = addLevel;
-			changeMutationPercentile = changeLevel;
 	}
 	
 	//No-key Overload, uses current time a key. 
@@ -137,10 +129,11 @@ public class NetworkMutator {
 		int nodesToAdd = MutationAlterNodeLinkages.calculateNumberOfNodesToAdd(network.getNetworkNodes().size(), addMutationPercentile, rand);
 		int linkagesToChange = MutationAlterNodeFunctions.calculateNumberOfNodesToAdd(network.getNetworkNodes().size(), changeMutationPercentile, rand);
 		int functionsToChange = MutationAddNewNodes.calculateNumberOfNodesToAdd(network.getNetworkNodes().size(), changeMutationPercentile, rand);
+		int nodesToRemove = MutationRemoveNodes.calculateNumberOfNodesToRemove(network.getNetworkNodes().size(), changeMutationPercentile, rand);
 		
-
 		nodes = MutationAlterNodeLinkages.alterNodeLinkages(rand, nodes, linkagesToChange);		
 		nodes = MutationAlterNodeFunctions.alterNodeFunctions(rand, nodes, functionsToChange);
+		nodes = MutationRemoveNodes.removeNodes(rand, nodes, nodesToRemove);
 		nodes = MutationAddNewNodes.addNewNodes(rand, nodes, nodesToAdd);
 		//TODO: mutate connections
 		
