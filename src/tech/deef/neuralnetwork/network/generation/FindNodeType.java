@@ -19,6 +19,7 @@ public class FindNodeType {
 	
 	public FindNodeType (){
 		nodeTypeMap = new HashMap<String, Calculation>();
+		addAllTypes();
 	}
 	
 	public void addAllTypes(){
