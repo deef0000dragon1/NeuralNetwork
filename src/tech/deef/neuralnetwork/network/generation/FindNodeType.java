@@ -37,35 +37,12 @@ public class FindNodeType {
 		nodeTypeMap.put("const8", (ArrayList<NetworkCalculationNode> nodes) -> 8);
 		nodeTypeMap.put("const9", (ArrayList<NetworkCalculationNode> nodes) -> 9);
 		nodeTypeMap.put("const10", (ArrayList<NetworkCalculationNode> nodes) -> 10);
+		nodeTypeMap.put("constpi", (ArrayList<NetworkCalculationNode> nodes) -> Math.PI);
+		nodeTypeMap.put("conste", (ArrayList<NetworkCalculationNode> nodes) -> Math.E);
 		
 		/*
 		switch (command) {
-		case "const0":
-			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> 0);
-		case "const1":
-			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> 1);
-		case "const2":
-			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> 2);
-		case "const3":
-			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> 3);
-		case "const4":
-			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> 4);
-		case "const5":
-			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> 5);
-		case "const6":
-			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> 6);
-		case "const7":
-			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> 7);
-		case "const8":
-			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> 8);
-		case "const9":
-			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> 9);
-		case "const10":
-			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> 10);
-		case "constpi":
-			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> Math.PI);
-		case "conste":
-			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> Math.E);
+		
 		
 		//UNIMPLEMENTED CLASS CODE. DO AS SOON AS FEASIBLE.
 		case "classfetch":
