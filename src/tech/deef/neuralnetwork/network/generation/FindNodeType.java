@@ -108,13 +108,45 @@ public class FindNodeType {
 		}
 		
 		
+		{//BASIC MATHS
+			
+		}
+		
+		
+		{//ADVANCED MATHS
+			
+		}
+		
+		
+		{//SET OPPERATORS
+				
+		}
+		
+		
+		{//ADJUSTORS
+			
+		}
+		
+		
+		{//TRIGONOMETRIC FUNCTIONS
+			
+		}
+		
+		
+		{//BOOLEAN OPERATORS
+			
+		}
+		
+		
+		{//PASSTHROUGH
+			
+		}
+		
 		
 		/*
 		switch (command) {
-
-			
-			
-			
+		
+		//BASIC MATHS
 		case "add":
 			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> {
 				return (nodes.get(1).getValue() + nodes.get(0).getValue());
@@ -139,6 +171,8 @@ public class FindNodeType {
 
 				return (nodes.get(0).getValue() / nodes.get(1).getValue());
 			});
+			
+		//ADVANCED MATHS
 		case "power":
 			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> {
 				return Math.pow(nodes.get(0).getValue(), nodes.get(1).getValue());
@@ -147,20 +181,10 @@ public class FindNodeType {
 			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> {
 				return Math.log(nodes.get(1).getValue())/Math.log(nodes.get(0).getValue());
 			});
-		case "absolutevalue":
-			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> {
-				return Math.abs(nodes.get(0).getValue());
-			});
 		case "modulous":
 			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> {
 				return nodes.get(0).getValue() % nodes.get(1).getValue();
 			});
-		case "increment":
-			return new NetworkCalculationNode(orderID, command,
-					(ArrayList<NetworkCalculationNode> nodes) -> nodes.get(0).getValue() + 1);
-		case "decrement":
-			return new NetworkCalculationNode(orderID, command,
-					(ArrayList<NetworkCalculationNode> nodes) -> nodes.get(0).getValue() - 1);
 		case "invert":
 			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> {
 				if (nodes.get(0).getValue() == 0) {
@@ -172,6 +196,9 @@ public class FindNodeType {
 		case "opposite":
 			return new NetworkCalculationNode(orderID, command,
 					(ArrayList<NetworkCalculationNode> nodes) -> nodes.get(0).getValue() * -1);
+					
+
+		//SET OPPERATORS
 		case "sum":
 			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> {
 				double total = 0;
@@ -208,6 +235,8 @@ public class FindNodeType {
 				}
 				return high;
 			});
+			
+		//ADJUSTORS
 		case "roundup":
 			return new NetworkCalculationNode(orderID, command,
 					(ArrayList<NetworkCalculationNode> nodes) -> ((int) nodes.get(0).getValue() + 1));
@@ -217,6 +246,19 @@ public class FindNodeType {
 		case "roundnearest":
 			return new NetworkCalculationNode(orderID, command,
 					(ArrayList<NetworkCalculationNode> nodes) -> Math.round(nodes.get(0).getValue()));
+		case "increment":
+			return new NetworkCalculationNode(orderID, command,
+					(ArrayList<NetworkCalculationNode> nodes) -> nodes.get(0).getValue() + 1);
+		case "decrement":
+			return new NetworkCalculationNode(orderID, command,
+					(ArrayList<NetworkCalculationNode> nodes) -> nodes.get(0).getValue() - 1);
+		case "absolutevalue":
+			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> {
+				return Math.abs(nodes.get(0).getValue());
+			});
+		
+		
+		//TRIGONOMETRY OPERATORS
 		case "sin":
 			return new NetworkCalculationNode(orderID, command,
 					(ArrayList<NetworkCalculationNode> nodes) -> Math.sin(nodes.get(0).getValue()));
@@ -244,6 +286,13 @@ public class FindNodeType {
 		case "arctan":
 			return new NetworkCalculationNode(orderID, command,
 					(ArrayList<NetworkCalculationNode> nodes) -> Math.atan(nodes.get(0).getValue()));
+		case "tansig":
+			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> {
+				return (2 / (1 + Math.exp(-2 * nodes.get(0).getValue()))) - 1;
+			});
+					
+		
+		//BOOLEAN OPERATORS
 		case "and":
 			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> 1);
 		case "or":
@@ -274,15 +323,13 @@ public class FindNodeType {
 
 				return ((int) nodes.get(0).getValue() >> 1);
 			});
-		case "tansig":
-			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> {
-				return (2 / (1 + Math.exp(-2 * nodes.get(0).getValue()))) - 1;
-			});
+
+
+		//PASSTHROUGH
 		case "passthrough":
 			return new NetworkCalculationNode(orderID, command,
 					(ArrayList<NetworkCalculationNode> nodes) -> nodes.get(0).getValue());
-		case "constantn":
-			return new ConstantInputCalculationNode(orderID, command, null, new Passthrough(0));
+		
 
 		/*
 		 * case "register": *************NOT IMPLEMENTABLE IN CURRENT
@@ -309,8 +356,8 @@ public class FindNodeType {
 		
 		
 		return (nodeTypeMap.containsKey(command)? 
-				(new NetworkCalculationNode(orderID, "passthrough", nodeTypeMap.get(command))):
-				(new NetworkCalculationNode(orderID, "passthrough", 
+				(new NetworkCalculationNode(orderID, command, nodeTypeMap.get(command))):
+				(new NetworkCalculationNode(orderID, "ErrorPassthrough", 
 											(ArrayList<NetworkCalculationNode> nodes) -> nodes.get(0).getValue())));
 	}
 }
