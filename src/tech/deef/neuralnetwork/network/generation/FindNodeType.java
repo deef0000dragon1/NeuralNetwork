@@ -24,6 +24,20 @@ public class FindNodeType {
 	
 	public void addAllTypes(){
 		
+		
+		
+		nodeTypeMap.put("const0", (ArrayList<NetworkCalculationNode> nodes) -> 0);
+		nodeTypeMap.put("const1", (ArrayList<NetworkCalculationNode> nodes) -> 1);
+		nodeTypeMap.put("const2", (ArrayList<NetworkCalculationNode> nodes) -> 2);
+		nodeTypeMap.put("const3", (ArrayList<NetworkCalculationNode> nodes) -> 3);
+		nodeTypeMap.put("const4", (ArrayList<NetworkCalculationNode> nodes) -> 4);
+		nodeTypeMap.put("const5", (ArrayList<NetworkCalculationNode> nodes) -> 5);
+		nodeTypeMap.put("const6", (ArrayList<NetworkCalculationNode> nodes) -> 6);
+		nodeTypeMap.put("const7", (ArrayList<NetworkCalculationNode> nodes) -> 7);
+		nodeTypeMap.put("const8", (ArrayList<NetworkCalculationNode> nodes) -> 8);
+		nodeTypeMap.put("const9", (ArrayList<NetworkCalculationNode> nodes) -> 9);
+		nodeTypeMap.put("const10", (ArrayList<NetworkCalculationNode> nodes) -> 10);
+		
 		/*
 		switch (command) {
 		case "const0":

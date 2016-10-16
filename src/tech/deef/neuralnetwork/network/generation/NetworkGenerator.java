@@ -30,6 +30,7 @@ public class NetworkGenerator {
 	public static ArrayList<NetworkCalculationNode> generateNetwork(String listOfNodes,
 																			   ArrayList<NetworkCalculationNode> inputNodeList) 
 	{
+		FindNodeType nodeFinder = new FindNodeType();
 		ArrayList<NetworkCalculationNode> networkNodes = new ArrayList<NetworkCalculationNode>();
 		ArrayList<Integer> orderIDs = new ArrayList<Integer>();
 		ArrayList<String> nodeInputSources = new ArrayList<String>();
@@ -88,7 +89,7 @@ public class NetworkGenerator {
 				// TODO determine how to give the system a passthrough from this
 				// point that can be used
 				// as the set value system for the inputs.
-				networkNodes.add(FindNodeType.findNodeType(command, orderID, null));
+				networkNodes.add(nodeFinder.findNodeType(command, orderID, null));
 
 				// add to lists
 				orderIDs.add(orderID);
