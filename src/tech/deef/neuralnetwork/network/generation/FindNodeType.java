@@ -23,118 +23,98 @@ public class FindNodeType {
 	}
 	
 	public void addAllTypes(){
+		//this will add alll basic node function types. 
+		//specalty noce types will have to be accessed seperatly and
+		//added in after the main node types have been added in. 
+		
+		{
+			//**************************CONSTANTS*********************************
+			nodeTypeMap.put("const0", (ArrayList<NetworkCalculationNode> nodes) -> 0);
+			nodeTypeMap.put("const1", (ArrayList<NetworkCalculationNode> nodes) -> 1);
+			nodeTypeMap.put("const2", (ArrayList<NetworkCalculationNode> nodes) -> 2);
+			nodeTypeMap.put("const3", (ArrayList<NetworkCalculationNode> nodes) -> 3);
+			nodeTypeMap.put("const4", (ArrayList<NetworkCalculationNode> nodes) -> 4);
+			nodeTypeMap.put("const5", (ArrayList<NetworkCalculationNode> nodes) -> 5);
+			nodeTypeMap.put("const6", (ArrayList<NetworkCalculationNode> nodes) -> 6);
+			nodeTypeMap.put("const7", (ArrayList<NetworkCalculationNode> nodes) -> 7);
+			nodeTypeMap.put("const8", (ArrayList<NetworkCalculationNode> nodes) -> 8);
+			nodeTypeMap.put("const9", (ArrayList<NetworkCalculationNode> nodes) -> 9);
+			nodeTypeMap.put("const10", (ArrayList<NetworkCalculationNode> nodes) -> 10);
+			nodeTypeMap.put("constpi", (ArrayList<NetworkCalculationNode> nodes) -> Math.PI);
+			nodeTypeMap.put("conste", (ArrayList<NetworkCalculationNode> nodes) -> Math.E);
+		}
 		
 		
+		{
+			//*************************COMPARITORS********************************
+			nodeTypeMap.put("equalto", (ArrayList<NetworkCalculationNode> nodes) -> {
+										if (nodes.get(0).getValue() == nodes.get(1).getValue()) {
+											return 1;
+										} else {
+											return 0;
+										}});
+			nodeTypeMap.put("equaltorange", (ArrayList<NetworkCalculationNode> nodes) -> {
+										if (nodes.get(0).getValue() <= nodes.get(1).getValue() + nodes.get(2).getValue()
+												&& nodes.get(0).getValue() >= nodes.get(1).getValue() - nodes.get(2).getValue()) {
+											return 1;
+										} else {
+											return 0;
+										}
+										});
+			nodeTypeMap.put("notequalto",(ArrayList<NetworkCalculationNode> nodes) -> {
+										if (nodes.get(0).getValue() != nodes.get(1).getValue()) {
+											return 1;
+										} else {
+											return 0;
+										}
+										});
+			nodeTypeMap.put("notequaltorange",(ArrayList<NetworkCalculationNode> nodes) -> {
+										// a > b+n or a < b-n
+										if (nodes.get(0).getValue() > nodes.get(1).getValue() + nodes.get(2).getValue()
+												|| nodes.get(0).getValue() < nodes.get(1).getValue() - nodes.get(2).getValue()) {
+											return 1;
+										} else {
+											return 0;
+										}
+										});
+			nodeTypeMap.put("greaterthan",(ArrayList<NetworkCalculationNode> nodes) -> {
+										if (nodes.get(0).getValue() > nodes.get(1).getValue()) {
+											return 1;
+										} else {
+											return 0;
+										}
+										});
+			nodeTypeMap.put("lessthan",(ArrayList<NetworkCalculationNode> nodes) -> {
+										if (nodes.get(0).getValue() < nodes.get(1).getValue()) {
+											return 1;
+										} else {
+											return 0;
+										}
+										});
+			nodeTypeMap.put("greaterthanorequalto",(ArrayList<NetworkCalculationNode> nodes) -> {
+										if (nodes.get(0).getValue() >= nodes.get(1).getValue()) {
+											return 1;
+										} else {
+											return 0;
+										}
+										});
+			nodeTypeMap.put("lessthanorequalto",(ArrayList<NetworkCalculationNode> nodes) -> {
+										if (nodes.get(0).getValue() <= nodes.get(1).getValue()) {
+											return 1;
+										} else {
+											return 0;
+										}
+										});
+		}
 		
-		nodeTypeMap.put("const0", (ArrayList<NetworkCalculationNode> nodes) -> 0);
-		nodeTypeMap.put("const1", (ArrayList<NetworkCalculationNode> nodes) -> 1);
-		nodeTypeMap.put("const2", (ArrayList<NetworkCalculationNode> nodes) -> 2);
-		nodeTypeMap.put("const3", (ArrayList<NetworkCalculationNode> nodes) -> 3);
-		nodeTypeMap.put("const4", (ArrayList<NetworkCalculationNode> nodes) -> 4);
-		nodeTypeMap.put("const5", (ArrayList<NetworkCalculationNode> nodes) -> 5);
-		nodeTypeMap.put("const6", (ArrayList<NetworkCalculationNode> nodes) -> 6);
-		nodeTypeMap.put("const7", (ArrayList<NetworkCalculationNode> nodes) -> 7);
-		nodeTypeMap.put("const8", (ArrayList<NetworkCalculationNode> nodes) -> 8);
-		nodeTypeMap.put("const9", (ArrayList<NetworkCalculationNode> nodes) -> 9);
-		nodeTypeMap.put("const10", (ArrayList<NetworkCalculationNode> nodes) -> 10);
-		nodeTypeMap.put("constpi", (ArrayList<NetworkCalculationNode> nodes) -> Math.PI);
-		nodeTypeMap.put("conste", (ArrayList<NetworkCalculationNode> nodes) -> Math.E);
+		
 		
 		/*
 		switch (command) {
-		
-		
-		//UNIMPLEMENTED CLASS CODE. DO AS SOON AS FEASIBLE.
-		case "classfetch":
-		// TODO implement classFetch 
-			 return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> 1); 
-		case "typefetch":
-		//TODO implement typeFetch 
-			 return new NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode> nodes) -> 1); 
-		case "numberfetch":
-		// TODO implement numberFetch 
-			 return new NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode> nodes) -> 1); 
-		case "costeffectfetch": 
-		// TODO implement costEffectFetch 
-			 return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> 1); 
-		case "stockeffectfetch": 
-		// TODO implement stockEffectFetch 
-			return new NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode> nodes) -> 1); 
-		case "timeeffectfeth": 
-		// TODO implement timeEffectFeth 
-			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> 1); 
-		case "timeeffectfetch": 
-		// TODO implement timeEffectFetch 
-			return new NetworkCalculationNode(orderID, command,(ArrayList<NetworkCalculationNode> nodes) -> 1);
-		
-		
-		case "equalto":
-			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> {
-				if (nodes.get(0).getValue() == nodes.get(1).getValue()) {
-					return 1;
-				} else {
-					return 0;
-				}
-			});
-		case "equaltorange":
-			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> {
-				if (nodes.get(0).getValue() <= nodes.get(1).getValue() + nodes.get(2).getValue()
-						&& nodes.get(0).getValue() >= nodes.get(1).getValue() - nodes.get(2).getValue()) {
-					return 1;
-				} else {
-					return 0;
-				}
-			});
-		case "notequalto":
-			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> {
-				if (nodes.get(0).getValue() != nodes.get(1).getValue()) {
-					return 1;
-				} else {
-					return 0;
-				}
-			});
-		case "notequaltor":
-			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> {
-				// a > b+n or a < b-n
-				if (nodes.get(0).getValue() > nodes.get(1).getValue() + nodes.get(2).getValue()
-						|| nodes.get(0).getValue() < nodes.get(1).getValue() - nodes.get(2).getValue()) {
-					return 1;
-				} else {
-					return 0;
-				}
-			});
-		case "greaterthan":
-			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> {
-				if (nodes.get(0).getValue() > nodes.get(1).getValue()) {
-					return 1;
-				} else {
-					return 0;
-				}
-			});
-		case "lessthan":
-			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> {
-				if (nodes.get(0).getValue() < nodes.get(1).getValue()) {
-					return 1;
-				} else {
-					return 0;
-				}
-			});
-		case "greaterthanorequalto":
-			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> {
-				if (nodes.get(0).getValue() >= nodes.get(1).getValue()) {
-					return 1;
-				} else {
-					return 0;
-				}
-			});
-		case "lessthanorequalto":
-			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> {
-				if (nodes.get(0).getValue() <= nodes.get(1).getValue()) {
-					return 1;
-				} else {
-					return 0;
-				}
-			});
+
+			
+			
+			
 		case "add":
 			return new NetworkCalculationNode(orderID, command, (ArrayList<NetworkCalculationNode> nodes) -> {
 				return (nodes.get(1).getValue() + nodes.get(0).getValue());
