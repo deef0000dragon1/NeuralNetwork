@@ -109,37 +109,68 @@ public class FindNodeType {
 		
 		
 		{//BASIC MATHS
-			
+			nodeTypeMap.put("",();
+			nodeTypeMap.put("",();
+			nodeTypeMap.put("",();
+			nodeTypeMap.put("",();
 		}
 		
 		
 		{//ADVANCED MATHS
-			
+			nodeTypeMap.put("",();
+			nodeTypeMap.put("",();
+			nodeTypeMap.put("",();
+			nodeTypeMap.put("",();
+			nodeTypeMap.put("",();
 		}
 		
 		
 		{//SET OPPERATORS
-				
+			nodeTypeMap.put("",();
+			nodeTypeMap.put("",();
+			nodeTypeMap.put("",();
+			nodeTypeMap.put("",();
 		}
 		
 		
 		{//ADJUSTORS
-			
+			nodeTypeMap.put("",();
+			nodeTypeMap.put("",();
+			nodeTypeMap.put("",();
+			nodeTypeMap.put("",();
+			nodeTypeMap.put("",();
+			nodeTypeMap.put("",();
 		}
 		
 		
 		{//TRIGONOMETRIC FUNCTIONS
-			
+			nodeTypeMap.put("",();
+			nodeTypeMap.put("",();
+			nodeTypeMap.put("",();
+			nodeTypeMap.put("",();
+			nodeTypeMap.put("",();
+			nodeTypeMap.put("",();
+			nodeTypeMap.put("",();
+			nodeTypeMap.put("",();
+			nodeTypeMap.put("",();
 		}
 		
 		
 		{//BOOLEAN OPERATORS
-			
+			nodeTypeMap.put("",();
+			nodeTypeMap.put("",();
+			nodeTypeMap.put("",();
+			nodeTypeMap.put("",();
+			nodeTypeMap.put("",();
+			nodeTypeMap.put("",();
+			nodeTypeMap.put("",();
+			nodeTypeMap.put("",();
+			nodeTypeMap.put("",();
 		}
 		
 		
 		{//PASSTHROUGH
-			
+			nodeTypeMap.put("",();
 		}
 		
 		
