@@ -109,37 +109,37 @@ public class FindNodeType {
 		
 		
 		{//BASIC MATHS
-			nodeTypeMap.put("",();
-			nodeTypeMap.put("",();
-			nodeTypeMap.put("",();
-			nodeTypeMap.put("",();
+			nodeTypeMap.put("add",();
+			nodeTypeMap.put("subtract",();
+			nodeTypeMap.put("multiply",();
+			nodeTypeMap.put("divide",();
 		}
 		
 		
 		{//ADVANCED MATHS
-			nodeTypeMap.put("",();
-			nodeTypeMap.put("",();
-			nodeTypeMap.put("",();
-			nodeTypeMap.put("",();
-			nodeTypeMap.put("",();
+			nodeTypeMap.put("power",();
+			nodeTypeMap.put("log",();
+			nodeTypeMap.put("modulous",();
+			nodeTypeMap.put("invert",();
+			nodeTypeMap.put("opposite",();
 		}
 		
 		
 		{//SET OPPERATORS
-			nodeTypeMap.put("",();
-			nodeTypeMap.put("",();
-			nodeTypeMap.put("",();
-			nodeTypeMap.put("",();
+			nodeTypeMap.put("sum",();
+			nodeTypeMap.put("average",();
+			nodeTypeMap.put("highest",();
+			nodeTypeMap.put("lowest",();
 		}
 		
 		
 		{//ADJUSTORS
-			nodeTypeMap.put("",();
-			nodeTypeMap.put("",();
-			nodeTypeMap.put("",();
-			nodeTypeMap.put("",();
-			nodeTypeMap.put("",();
-			nodeTypeMap.put("",();
+			nodeTypeMap.put("roundup",();
+			nodeTypeMap.put("rounddown",();
+			nodeTypeMap.put("roundnearest",();
+			nodeTypeMap.put("increment",();
+			nodeTypeMap.put("decrement",();
+			nodeTypeMap.put("absolutevalue",();
 		}
 		
 		
@@ -170,7 +170,7 @@ public class FindNodeType {
 		
 		
 		{//PASSTHROUGH
-			nodeTypeMap.put("",();
+			nodeTypeMap.put("passthrough",();
 		}
 		
 		
